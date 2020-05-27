@@ -20,6 +20,8 @@ extern "C" {
 
 #ifdef _WIN32
 #define EB_API __declspec(dllexport)
+#elif defined(__GNUC__)
+#define EB_API __attribute__ ((visibility ("default")))
 #else
 #define EB_API
 #endif

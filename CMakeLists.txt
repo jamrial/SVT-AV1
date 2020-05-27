@@ -107,6 +107,7 @@ else()
         list(APPEND flags_to_test -mxsave)
     else()
         list(APPEND flags_to_test -fstack-protector-strong -D_FORTIFY_SOURCE=2)
+        list(APPEND flags_to_test -fvisibility=hidden)
     endif()
 endif()
 
