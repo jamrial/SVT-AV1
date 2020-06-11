@@ -3139,6 +3139,244 @@ static void print_lib_params(
 
     fflush(stdout);
 }
+
+/**********************************
+* Parse Single Parameter
+**********************************/
+static EbErrorType str_to_int(const char *nptr, int32_t *out)
+{
+    char *endptr;
+    int32_t val;
+
+    val = strtol(nptr, &endptr, 0);
+
+    if (endptr == nptr || *endptr != '\0')
+        return EB_ErrorBadParameter;
+
+    *out = val;
+    return EB_ErrorNone;
+}
+
+static EbErrorType str_to_uint(const char *nptr, uint32_t *out)
+{
+    char *endptr;
+    uint32_t val;
+
+    val = strtoul(nptr, &endptr, 0);
+
+    if (endptr == nptr || *endptr != '\0')
+        return EB_ErrorBadParameter;
+
+    *out = val;
+    return EB_ErrorNone;
+}
+
+static EbErrorType str_to_bool(const char *nptr, EbBool *out)
+{
+    EbBool val;
+
+    if (!strcasecmp(nptr, "true"))
+        val = EB_TRUE;
+    else if (!strcasecmp(nptr, "false"))
+        val = EB_FALSE;
+    else {
+        char *endptr;
+
+        val = strtoul(nptr, &endptr, 0);
+
+        if (endptr == nptr || *endptr != '\0')
+            return EB_ErrorBadParameter;
+    }
+
+    *out = val;
+    return EB_ErrorNone;
+}
+
+static EbErrorType str_to_color_fmt(const char *nptr, EbColorFormat *out)
+{
+    const struct {
+        const char *name;
+        EbColorFormat fmt;
+    } color_formats[] = {
+        {"mono", EB_YUV400},
+        {"420",  EB_YUV420},
+        {"422",  EB_YUV422},
+        {"444",  EB_YUV444},
+    };
+    const unsigned color_format_size = sizeof(color_formats) / sizeof(color_formats[0]);
+
+    for (unsigned i = 0; i < color_format_size; i++) {
+        if (!strcasecmp(nptr, color_formats[i].name)) {
+            *out = color_formats[i].fmt;
+            return EB_ErrorNone;
+        }
+    }
+
+    return EB_ErrorBadParameter;
+}
+
+#ifdef __GNUC__
+__attribute__((visibility("default")))
+#endif
+EB_API EbErrorType svt_av1_enc_parse_parameter(EbSvtAv1EncConfiguration *config_struct,
+                                               const char *name,
+                                               const char *value)
+{
+    if (config_struct == NULL)
+        return EB_ErrorBadParameter;
+    if (name == NULL || value == NULL)
+        return EB_ErrorBadParameter;
+
+    EbErrorType return_error = EB_ErrorBadParameter;
+
+    if (!strcmp(name, "encoder_color_format"))
+        return str_to_color_fmt(value, &config_struct->encoder_color_format);
+
+    const struct {
+        const char *name;
+        uint32_t *out;
+    } uint_opts[] = {
+        { "source_width", &config_struct->source_width },
+        { "source_height", &config_struct->source_height },
+        { "render_height", &config_struct->render_height },
+        { "qp", &config_struct->qp },
+        { "hierarchical_levels", &config_struct->hierarchical_levels },
+        { "intra_refresh_type", &config_struct->intra_refresh_type },
+        { "search_area_width", &config_struct->search_area_width },
+        { "intra_refresh_type", &config_struct->intra_refresh_type },
+        { "search_area_height", &config_struct->search_area_height },
+        { "profile", &config_struct->profile },
+        { "level", &config_struct->level },
+        { "tier", &config_struct->tier },
+        { "frame_rate", &config_struct->frame_rate },
+        { "frame_rate_numerator", &config_struct->frame_rate_numerator },
+        { "frame_rate_denominator", &config_struct->frame_rate_denominator },
+        { "rate_control_mode", &config_struct->rate_control_mode },
+        { "look_ahead_distance", &config_struct->look_ahead_distance },
+        { "target_bit_rate", &config_struct->target_bit_rate },
+        { "scene_change_detection", &config_struct->scene_change_detection },
+        { "max_qp_allowed", &config_struct->max_qp_allowed },
+        { "min_qp_allowed", &config_struct->min_qp_allowed },
+        { "stat_report", &config_struct->stat_report },
+        { "high_dynamic_range_input", &config_struct->high_dynamic_range_input },
+        { "screen_content_mode", &config_struct->screen_content_mode },
+        { "encoder_bit_depth", &config_struct->encoder_bit_depth },
+        { "compressed_ten_bit_format", &config_struct->compressed_ten_bit_format },
+        { "speed_control_flag", &config_struct->speed_control_flag },
+    };
+    const unsigned uint_opts_size = sizeof(uint_opts) / sizeof(uint_opts[0]);
+
+    for (unsigned i = 0; i < uint_opts_size; i++) {
+        if (!strcasecmp(name, uint_opts[i].name)) {
+            return str_to_uint(value, uint_opts[i].out);
+        }
+    }
+
+    const struct {
+        const char *name;
+        uint8_t *out;
+    } uint8_opts[] = {
+        { "enc_mode", &config_struct->enc_mode },
+        { "snd_pass_enc_mode", &config_struct->snd_pass_enc_mode },
+        { "pred_structure", &config_struct->pred_structure },
+        { "unrestricted_motion_vector", &config_struct->unrestricted_motion_vector },
+        { "altref_strength", &config_struct->altref_strength },
+        { "altref_nframes", &config_struct->altref_nframes },
+        { "enable_hbd_mode_decision", &config_struct->enable_hbd_mode_decision },
+        { "superres_mode", &config_struct->superres_mode },
+        { "superres_qthres", &config_struct->superres_qthres },
+        { "superres_kf_denom", &config_struct->superres_kf_denom },
+        { "superres_denom", &config_struct->superres_denom },
+    };
+    const unsigned uint8_opts_size = sizeof(uint8_opts) / sizeof(uint8_opts[0]);
+
+    for (unsigned i = 0; i < uint8_opts_size; i++) {
+        if (!strcasecmp(name, uint8_opts[i].name)) {
+            uint32_t val;
+            return_error = str_to_uint(value, &val);
+            if (return_error ==EB_ErrorNone)
+                *uint8_opts[i].out = val;
+            return return_error;
+        }
+    }
+
+    const struct {
+        const char *name;
+        int32_t *out;
+    } int_opts[] = {
+        { "intra_period_length", &config_struct->intra_period_length },
+        { "tile_rows", &config_struct->tile_rows },
+        { "tile_columns", &config_struct->tile_columns },
+        { "intrabc_mode", &config_struct->intrabc_mode },
+        { "target_socket", &config_struct->target_socket },
+        { "enable_warped_motion", &config_struct->enable_warped_motion },
+        { "enable_intra_edge_filter", &config_struct->enable_intra_edge_filter },
+        { "pic_based_rate_est", &config_struct->pic_based_rate_est },
+        { "enable_palette", &config_struct->enable_palette },
+        { "enable_rdoq", &config_struct->enable_rdoq },
+        { "set_chroma_mode", &config_struct->set_chroma_mode },
+        { "disable_cfl_flag", &config_struct->disable_cfl_flag },
+        { "cdef_mode", &config_struct->cdef_mode },
+        { "enable_restoration_filtering", &config_struct->enable_restoration_filtering },
+        { "sg_filter_mode", &config_struct->sg_filter_mode },
+        { "wn_filter_mode", &config_struct->wn_filter_mode },
+        { "pred_me", &config_struct->pred_me },
+        { "bipred_3x3_inject", &config_struct->bipred_3x3_inject },
+        { "compound_level", &config_struct->compound_level },
+        { "combine_class_12", &config_struct->combine_class_12 },
+        { "edge_skp_angle_intra", &config_struct->edge_skp_angle_intra },
+        { "intra_angle_delta", &config_struct->intra_angle_delta },
+        { "inter_intra_compound", &config_struct->inter_intra_compound },
+        { "enable_paeth", &config_struct->enable_paeth },
+        { "intra_angle_delta", &config_struct->intra_angle_delta },
+        { "enable_smooth", &config_struct->enable_smooth },
+        { "enable_mfmv", &config_struct->enable_mfmv },
+        { "enable_redundant_blk", &config_struct->enable_redundant_blk },
+        { "spatial_sse_fl", &config_struct->spatial_sse_fl },
+        { "enable_subpel", &config_struct->enable_subpel },
+        { "over_bndry_blk", &config_struct->over_bndry_blk },
+        { "new_nearest_comb_inject", &config_struct->new_nearest_comb_inject },
+        { "prune_unipred_me", &config_struct->prune_unipred_me },
+        { "prune_ref_rec_part", &config_struct->prune_ref_rec_part },
+        { "enable_redundant_blk", &config_struct->enable_redundant_blk },
+        { "nsq_table", &config_struct->nsq_table },
+    };
+    const unsigned int_opts_size = sizeof(int_opts) / sizeof(int_opts[0]);
+
+    for (unsigned i = 0; i < int_opts_size; i++) {
+        if (!strcasecmp(name, int_opts[i].name)) {
+            return str_to_int(value, int_opts[i].out);
+        }
+    }
+
+    const struct {
+        const char *name;
+        EbBool *out;
+    } bool_opts[] = {
+        { "ext_block_flag", &config_struct->ext_block_flag },
+        { "disable_dlf_flag", &config_struct->disable_dlf_flag },
+        { "use_default_me_hme", &config_struct->use_default_me_hme },
+        { "enable_hme_flag", &config_struct->enable_hme_flag },
+        { "enable_hme_level0_flag", &config_struct->enable_hme_level0_flag },
+        { "enable_hme_level1_flag", &config_struct->enable_hme_level1_flag },
+        { "enable_hme_level2_flag", &config_struct->enable_hme_level2_flag },
+        { "enable_global_motion", &config_struct->enable_global_motion },
+        { "enable_obmc", &config_struct->enable_obmc },
+        { "enable_filter_intra", &config_struct->enable_filter_intra },
+        { "enable_altrefs", &config_struct->enable_altrefs },
+        { "enable_manual_pred_struct", &config_struct->enable_manual_pred_struct },
+    };
+    const unsigned bool_opts_size = sizeof(bool_opts) / sizeof(bool_opts[0]);
+
+    for (unsigned i = 0; i < bool_opts_size; i++) {
+        if (!strcasecmp(name, bool_opts[i].name)) {
+            return str_to_bool(value, bool_opts[i].out);
+        }
+    }
+
+    return return_error;
+}
+
 /**********************************
 
 * Set Parameter

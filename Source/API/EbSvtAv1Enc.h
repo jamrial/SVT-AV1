@@ -664,6 +664,18 @@ svt_av1_enc_init_handle(EbComponentType **p_handle, void *p_app_data,
                EbSvtAv1EncConfiguration
                    *config_ptr); // config_ptr will be loaded with default params from the library
 
+/* OPTIONAL: Set a single configuration parameter.
+     *
+     * Parameter:
+     * @ *pComponentParameterStructure  Encoder parameters structure.
+     * @ *name                          Null terminated string containing the parameter name
+     * @ *value                         Null terminated string containing the parameter value */
+EB_API EbErrorType
+svt_av1_enc_parse_parameter(
+    EbSvtAv1EncConfiguration *pComponentParameterStructure,
+    const char *name,
+    const char *value);
+
 /* STEP 2: Set all configuration parameters.
      *
      * Parameter:
