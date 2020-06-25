@@ -692,7 +692,7 @@ void eb_av1_warp_affine_c(const int32_t *mat, const uint8_t *ref, int width, int
     }
 }
 
-void warp_plane(EbWarpedMotionParams *wm, const uint8_t *const ref, int width, int height,
+void eb_warp_plane(EbWarpedMotionParams *wm, const uint8_t *const ref, int width, int height,
                        int stride, uint8_t *pred, int p_col, int p_row, int p_width, int p_height,
                        int p_stride, int subsampling_x, int subsampling_y,
                        ConvolveParams *conv_params) {
@@ -843,7 +843,7 @@ void eb_av1_highbd_warp_affine_c(const int32_t *mat, const uint16_t *ref, int wi
     }
 }
 
-void highbd_warp_plane(EbWarpedMotionParams *wm, const uint8_t *const ref8, int width,
+void eb_highbd_warp_plane(EbWarpedMotionParams *wm, const uint8_t *const ref8, int width,
                               int height, int stride, const uint8_t *const pred8, int p_col,
                               int p_row, int p_width, int p_height, int p_stride, int subsampling_x,
                               int subsampling_y, int bd, ConvolveParams *conv_params) {
@@ -887,7 +887,7 @@ void eb_av1_warp_plane(EbWarpedMotionParams *wm, int use_hbd, int bd, const uint
                        int p_height, int p_stride, int subsampling_x, int subsampling_y,
                        ConvolveParams *conv_params) {
     if (use_hbd)
-        highbd_warp_plane(wm,
+        eb_highbd_warp_plane(wm,
                           ref,
                           width,
                           height,
@@ -903,7 +903,7 @@ void eb_av1_warp_plane(EbWarpedMotionParams *wm, int use_hbd, int bd, const uint
                           bd,
                           conv_params);
     else
-        warp_plane(wm,
+        eb_warp_plane(wm,
                    ref,
                    width,
                    height,
