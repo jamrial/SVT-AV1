@@ -1727,7 +1727,7 @@ static INLINE int64_t summary_all_avx2(const __m256i *sum_all) {
     xx_storel_64(&sum, sum_1x64);
     return sum;
 }
-int64_t aom_sse_avx2(const uint8_t *a, int a_stride, const uint8_t *b, int b_stride, int width,
+int64_t eb_aom_sse_avx2(const uint8_t *a, int a_stride, const uint8_t *b, int b_stride, int width,
                      int height) {
     int32_t y    = 0;
     int64_t sse  = 0;

@@ -14,7 +14,7 @@
  * - aom_blend_a64_hmask_sse4_1/aom_blend_a64_vmask_sse4_1
  * - aom_highbd_blend_a64_hmask_sse4_1/aom_highbd_blend_a64_vmask_sse4_1
  * - eb_aom_highbd_blend_a64_hmask_sse4_1/eb_aom_highbd_blend_a64_vmask_sse4_1
- * - aom_sse_avx2/aom_highbd_sse_avx2
+ * - eb_aom_sse_avx2/aom_highbd_sse_avx2
  *
  * @author Cidana-Wenyao
  *
@@ -1002,7 +1002,7 @@ class AomSseTest : public ::testing::TestWithParam<AomSseParam> {
                 b_[j] = rnd_.random();
             }
 
-            int64_t res_ref = aom_sse_c(a_, width, b_, width, height, width);
+            int64_t res_ref = eb_aom_sse_c(a_, width, b_, width, height, width);
             int64_t res_tst = test_impl(a_, width, b_, width, height, width);
 
             ASSERT_EQ(res_ref, res_tst);
@@ -1021,7 +1021,7 @@ TEST_P(AomSseTest, MatchTest) {
 INSTANTIATE_TEST_CASE_P(SSETEST, AomSseTest,
                         ::testing::Combine(::testing::Range(BLOCK_4X4,
                                                             BlockSizeS_ALL),
-                                           ::testing::Values(aom_sse_avx2)));
+                                           ::testing::Values(eb_aom_sse_avx2)));
 
 class AomSseHighbdTest : public ::testing::TestWithParam<AomSseParam> {
   public:

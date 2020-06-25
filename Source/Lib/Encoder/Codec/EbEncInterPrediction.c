@@ -788,7 +788,7 @@ int64_t aom_highbd_sse_c(const uint8_t *a8, int a_stride, const uint8_t *b8, int
     return sse;
 }
 
-int64_t aom_sse_c(const uint8_t *a, int a_stride, const uint8_t *b, int b_stride, int width,
+int64_t eb_aom_sse_c(const uint8_t *a, int a_stride, const uint8_t *b, int b_stride, int width,
                   int height) {
     int     y, x;
     int64_t sse = 0;
@@ -832,9 +832,9 @@ void model_rd_for_sb_with_curvfit(PictureControlSet *  picture_control_set_ptr,
         int64_t         dist, sse;
         int             rate;
         if (context_ptr->hbd_mode_decision) // CCODE
-            sse = aom_highbd_sse(src_buf, src_stride, pred_buf, pred_stride, bw, bh);
+            sse = eb_aom_highbd_sse(src_buf, src_stride, pred_buf, pred_stride, bw, bh);
         else
-            sse = aom_sse(src_buf, src_stride, pred_buf, pred_stride, bw, bh);
+            sse = eb_aom_sse(src_buf, src_stride, pred_buf, pred_stride, bw, bh);
 
         sse = ROUND_POWER_OF_TWO(sse, bd_round);
         model_rd_with_curvfit(picture_control_set_ptr,
