@@ -79,7 +79,7 @@ Filter81dFunction aom_filter_block1d4_h2_ssse3;
 #define aom_filter_block1d4_h2_avx2 aom_filter_block1d4_h2_ssse3
 
 #define FUN_CONV_1D(name, step_q4, filter, dir, src_start, avg, opt)                               \
-    void aom_convolve8_##name##_##opt(const uint8_t *src,                                          \
+    void eb_aom_convolve8_##name##_##opt(const uint8_t *src,                                          \
                                       ptrdiff_t      src_stride,                                   \
                                       uint8_t *      dst,                                          \
                                       ptrdiff_t      dst_stride,                                   \
@@ -163,7 +163,7 @@ Filter81dFunction aom_filter_block1d4_h2_ssse3;
             }                                                                                      \
         }                                                                                          \
         if (w) {                                                                                   \
-            aom_convolve8_##name##_c(                                                              \
+            eb_aom_convolve8_##name##_c(                                                              \
                 src, src_stride, dst, dst_stride, filter_x, x_step_q4, filter_y, y_step_q4, w, h); \
         }                                                                                          \
     }

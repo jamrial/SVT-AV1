@@ -232,12 +232,12 @@ void eb_aom_upsampled_pred_c(MacroBlockD *              xd,
     } else if (!subpel_y_q3) {
         const int16_t *const kernel =
             av1_get_interp_filter_subpel_kernel(*filter, subpel_x_q3 << 1);
-        aom_convolve8_horiz_c(
+        eb_aom_convolve8_horiz_c(
             ref, ref_stride, comp_pred, width, kernel, 16, NULL, -1, width, height);
     } else if (!subpel_x_q3) {
         const int16_t *const kernel =
             av1_get_interp_filter_subpel_kernel(*filter, subpel_y_q3 << 1);
-        aom_convolve8_vert_c(
+        eb_aom_convolve8_vert_c(
             ref, ref_stride, comp_pred, width, NULL, -1, kernel, 16, width, height);
     } else {
         DECLARE_ALIGNED(16, uint8_t, temp[((MAX_SB_SIZE * 2 + 16) + 16) * MAX_SB_SIZE]);
@@ -247,7 +247,7 @@ void eb_aom_upsampled_pred_c(MacroBlockD *              xd,
             av1_get_interp_filter_subpel_kernel(*filter, subpel_y_q3 << 1);
         const int intermediate_height = (((height - 1) * 8 + subpel_y_q3) >> 3) + filter->taps;
         assert(intermediate_height <= (MAX_SB_SIZE * 2 + 16) + 16);
-        aom_convolve8_horiz_c(ref - ref_stride * ((filter->taps >> 1) - 1),
+        eb_aom_convolve8_horiz_c(ref - ref_stride * ((filter->taps >> 1) - 1),
                               ref_stride,
                               temp,
                               MAX_SB_SIZE,
@@ -257,7 +257,7 @@ void eb_aom_upsampled_pred_c(MacroBlockD *              xd,
                               -1,
                               width,
                               intermediate_height);
-        aom_convolve8_vert_c(temp + MAX_SB_SIZE * ((filter->taps >> 1) - 1),
+        eb_aom_convolve8_vert_c(temp + MAX_SB_SIZE * ((filter->taps >> 1) - 1),
                              MAX_SB_SIZE,
                              comp_pred,
                              width,

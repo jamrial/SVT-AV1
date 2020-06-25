@@ -283,7 +283,7 @@ static void convolve_vert(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst
     }
 }
 
-void aom_convolve8_horiz_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
+void eb_aom_convolve8_horiz_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
                            ptrdiff_t dst_stride, const int16_t *filter_x, int x_step_q4,
                            const int16_t *filter_y, int y_step_q4, int w, int h) {
     const InterpKernel *const filters_x = get_filter_base(filter_x);
@@ -295,7 +295,7 @@ void aom_convolve8_horiz_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *ds
     convolve_horiz(src, src_stride, dst, dst_stride, filters_x, x0_q4, x_step_q4, w, h);
 }
 
-void aom_convolve8_vert_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
+void eb_aom_convolve8_vert_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
                           ptrdiff_t dst_stride, const int16_t *filter_x, int x_step_q4,
                           const int16_t *filter_y, int y_step_q4, int w, int h) {
     const InterpKernel *const filters_y = get_filter_base(filter_y);
