@@ -501,7 +501,7 @@ static void pick_wedge(PictureControlSet *picture_control_set_ptr, ModeDecisionC
     for (wedge_index = 0; wedge_index < wedge_types; ++wedge_index) {
         mask = av1_get_contiguous_soft_mask(wedge_index, 0, bsize);
 
-        wedge_sign = av1_wedge_sign_from_residuals(ds, mask, N, sign_limit);
+        wedge_sign = eb_av1_wedge_sign_from_residuals(ds, mask, N, sign_limit);
 
         mask = av1_get_contiguous_soft_mask(wedge_index, wedge_sign, bsize);
         sse  = av1_wedge_sse_from_residuals(residual1, diff10, mask, N);
