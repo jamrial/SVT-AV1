@@ -67,7 +67,7 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
     //to use C: flags=0
     eb_aom_sse = eb_aom_sse_c;
 
-    eb_aom_highbd_sse = aom_highbd_sse_c;
+    eb_aom_highbd_sse = eb_aom_highbd_sse_c;
 
     eb_av1_wedge_compute_delta_squares = av1_wedge_compute_delta_squares_c;
     eb_av1_wedge_sign_from_residuals = av1_wedge_sign_from_residuals_c;

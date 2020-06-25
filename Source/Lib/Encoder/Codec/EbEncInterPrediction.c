@@ -770,7 +770,7 @@ void pick_interinter_mask(ModeDecisionCandidate *candidate_ptr,
 
 
 //
-int64_t aom_highbd_sse_c(const uint8_t *a8, int a_stride, const uint8_t *b8, int b_stride,
+int64_t eb_aom_highbd_sse_c(const uint8_t *a8, int a_stride, const uint8_t *b8, int b_stride,
                          int width, int height) {
     int       y, x;
     int64_t   sse = 0;
