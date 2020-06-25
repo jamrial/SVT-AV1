@@ -15,7 +15,7 @@ static INLINE unsigned int lcg_rand16(unsigned int *state) {
 
 /* That same calculation as: av1_calc_indices_dist_dim1_avx2(),
    but not calculate sum at the end. */
-void av1_calc_indices_dim1_avx2(const int *data, const int *centroids, uint8_t *indices, int n,
+void eb_av1_calc_indices_dim1_avx2(const int *data, const int *centroids, uint8_t *indices, int n,
                                 int k) {
     int i = 0;
     int results[MAX_SB_SQUARE];
@@ -183,7 +183,7 @@ void eb_av1_k_means_dim1_avx2(const int *data, int *centroids, uint8_t *indices,
 
 /* That same calculation as: av1_calc_indices_dist_dim2_avx2(),
    but not calculate sum at the end. */
-void av1_calc_indices_dim2_avx2(const int *data, const int *centroids, uint8_t *indices, int n,
+void eb_av1_calc_indices_dim2_avx2(const int *data, const int *centroids, uint8_t *indices, int n,
                                 int k) {
     int i = 0;
     int results[MAX_SB_SQUARE];

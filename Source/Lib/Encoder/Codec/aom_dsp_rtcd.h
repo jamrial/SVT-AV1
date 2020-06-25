@@ -523,10 +523,10 @@ extern "C" {
     RTCD_EXTERN void(*eb_av1_k_means_dim1)(const int* data, int* centroids, uint8_t* indices, int n, int k, int max_itr);
     void eb_av1_k_means_dim2_c(const int* data, int* centroids, uint8_t* indices, int n, int k, int max_itr);
     RTCD_EXTERN void(*eb_av1_k_means_dim2)(const int* data, int* centroids, uint8_t* indices, int n, int k, int max_itr);
-    void av1_calc_indices_dim1_c(const int* data, const int* centroids, uint8_t* indices, int n, int k);
-    RTCD_EXTERN void(*av1_calc_indices_dim1)(const int* data, const int* centroids, uint8_t* indices, int n, int k);
-    void av1_calc_indices_dim2_c(const int* data, const int* centroids, uint8_t* indices, int n, int k);
-    RTCD_EXTERN void(*av1_calc_indices_dim2)(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    void eb_av1_calc_indices_dim1_c(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    RTCD_EXTERN void(*eb_av1_calc_indices_dim1)(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    void eb_av1_calc_indices_dim2_c(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    RTCD_EXTERN void(*eb_av1_calc_indices_dim2)(const int* data, const int* centroids, uint8_t* indices, int n, int k);
     RTCD_EXTERN void(*svt_av1_apply_filtering)(const uint8_t *y_src, int y_src_stride, const uint8_t *y_pre, int y_pre_stride, const uint8_t *u_src, const uint8_t *v_src, int uv_src_stride, const uint8_t *u_pre, const uint8_t *v_pre, int uv_pre_stride, unsigned int block_width, unsigned int block_height, int ss_x, int ss_y, int strength, const int *blk_fw, int use_whole_blk, uint32_t *y_accum, uint16_t *y_count, uint32_t *u_accum, uint16_t *u_count, uint32_t *v_accum, uint16_t *v_count);
     RTCD_EXTERN void(*svt_av1_apply_filtering_highbd)(const uint16_t *y_src, int y_src_stride, const uint16_t *y_pre, int y_pre_stride, const uint16_t *u_src, const uint16_t *v_src, int uv_src_stride, const uint16_t *u_pre, const uint16_t *v_pre, int uv_pre_stride, unsigned int block_width, unsigned int block_height, int ss_x, int ss_y, int strength, const int *blk_fw, int use_whole_blk, uint32_t *y_accum, uint16_t *y_count, uint32_t *u_accum, uint16_t *u_count, uint32_t *v_accum, uint16_t *v_count);
     RTCD_EXTERN void(*svt_av1_apply_temporal_filter_planewise)(
@@ -1092,9 +1092,9 @@ extern "C" {
 
     void eb_av1_k_means_dim2_avx2(const int* data, int* centroids, uint8_t* indices, int n, int k, int max_itr);
 
-    void av1_calc_indices_dim1_avx2(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    void eb_av1_calc_indices_dim1_avx2(const int* data, const int* centroids, uint8_t* indices, int n, int k);
 
-    void av1_calc_indices_dim2_avx2(const int* data, const int* centroids, uint8_t* indices, int n, int k);
+    void eb_av1_calc_indices_dim2_avx2(const int* data, const int* centroids, uint8_t* indices, int n, int k);
 
     void svt_av1_apply_temporal_filter_sse4_1(
         const uint8_t *y_src, int y_src_stride, const uint8_t *y_pre, int y_pre_stride,
