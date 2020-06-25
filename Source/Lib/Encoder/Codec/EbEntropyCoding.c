@@ -4806,7 +4806,7 @@ int av1_allow_palette(int allow_screen_content_tools, BlockSize sb_type) {
 int av1_get_palette_bsize_ctx(BlockSize bsize) {
     return num_pels_log2_lookup[bsize] - num_pels_log2_lookup[BLOCK_8X8];
 }
-void av1_tokenize_color_map(FRAME_CONTEXT *frame_context, BlkStruct *blk_ptr, int plane,
+void eb_av1_tokenize_color_map(FRAME_CONTEXT *frame_context, BlkStruct *blk_ptr, int plane,
                             TOKENEXTRA **t, BlockSize bsize, TxSize tx_size, COLOR_MAP_TYPE type,
                             int allow_update_cdf);
 void av1_get_block_dimensions(BlockSize bsize, int plane, const MacroBlockD *xd, int *width,
@@ -5670,7 +5670,7 @@ EbErrorType write_modes_b(PictureControlSet *pcs_ptr, EntropyCodingContext *cont
                         blk_ptr->palette_info.pmi.palette_size[plane];
                     if (palette_size_plane > 0) {
                         const MbModeInfo *const mbmi = &blk_ptr->av1xd->mi[0]->mbmi;
-                        av1_tokenize_color_map(
+                        eb_av1_tokenize_color_map(
                             frame_context,
                             blk_ptr,
                             plane,
@@ -6060,7 +6060,7 @@ EbErrorType write_modes_b(PictureControlSet *pcs_ptr, EntropyCodingContext *cont
                         blk_ptr->palette_info.pmi.palette_size[plane];
                     if (palette_size_plane > 0) {
                         const MbModeInfo *const mbmi = &blk_ptr->av1xd->mi[0]->mbmi;
-                        av1_tokenize_color_map(
+                        eb_av1_tokenize_color_map(
                             frame_context,
                             blk_ptr,
                             plane,
