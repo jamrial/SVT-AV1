@@ -1942,7 +1942,7 @@ static INLINE void build_obmc_inter_pred_above(uint8_t is16bit, MacroBlockD *xd,
 
         const int            tmp_stride = ctxt->adjacent_stride[plane];
         const uint8_t *const tmp        = &ctxt->adjacent[plane][plane_col_pos];
-        const uint8_t *const mask       = av1_get_obmc_mask(bh);
+        const uint8_t *const mask       = eb_av1_get_obmc_mask(bh);
 
         if (is16bit)
             eb_aom_highbd_blend_a64_vmask((uint16_t *)dst,
@@ -1991,7 +1991,7 @@ static INLINE void build_obmc_inter_pred_above_hbd(uint8_t bit_depth, MacroBlock
 
         const int            tmp_stride = ctxt->adjacent_stride[plane];
         const uint8_t *const tmp = &ctxt->adjacent[plane][plane_col_pos];
-        const uint8_t *const mask = av1_get_obmc_mask(bh);
+        const uint8_t *const mask = eb_av1_get_obmc_mask(bh);
 
         eb_aom_highbd_blend_a64_vmask((uint16_t *)dst,
             dst_stride,
@@ -2037,7 +2037,7 @@ static INLINE void build_obmc_inter_pred_left(uint8_t is16bit, MacroBlockD *xd, 
 
         const int            tmp_stride = ctxt->adjacent_stride[plane];
         const uint8_t *const tmp        = &ctxt->adjacent[plane][plane_row_pos * tmp_stride];
-        const uint8_t *const mask       = av1_get_obmc_mask(bw);
+        const uint8_t *const mask       = eb_av1_get_obmc_mask(bw);
 
         if (is16bit)
             eb_aom_highbd_blend_a64_hmask((uint16_t *)dst,
@@ -2086,7 +2086,7 @@ static INLINE void build_obmc_inter_pred_left_hbd(uint8_t bit_depth, MacroBlockD
 
         const int            tmp_stride = ctxt->adjacent_stride[plane];
         const uint8_t *const tmp = &ctxt->adjacent[plane][plane_row_pos * tmp_stride];
-        const uint8_t *const mask = av1_get_obmc_mask(bw);
+        const uint8_t *const mask = eb_av1_get_obmc_mask(bw);
 
         eb_aom_highbd_blend_a64_hmask((uint16_t *)dst,
             dst_stride,
@@ -2224,7 +2224,7 @@ static INLINE void calc_target_weighted_pred_above(uint8_t is16bit, MacroBlockD 
     struct calc_target_weighted_pred_ctxt *ctxt = (struct calc_target_weighted_pred_ctxt *)fun_ctxt;
 
     const int            bw     = xd->n4_w << MI_SIZE_LOG2;
-    const uint8_t *const mask1d = av1_get_obmc_mask(ctxt->overlap);
+    const uint8_t *const mask1d = eb_av1_get_obmc_mask(ctxt->overlap);
 
     int32_t *      wsrc = ctxt->wsrc_buf + (rel_mi_col * MI_SIZE);
     int32_t *      mask = ctxt->mask_buf + (rel_mi_col * MI_SIZE);
@@ -2255,7 +2255,7 @@ static INLINE void calc_target_weighted_pred_left(uint8_t is16bit, MacroBlockD *
     struct calc_target_weighted_pred_ctxt *ctxt = (struct calc_target_weighted_pred_ctxt *)fun_ctxt;
 
     const int            bw     = xd->n4_w << MI_SIZE_LOG2;
-    const uint8_t *const mask1d = av1_get_obmc_mask(ctxt->overlap);
+    const uint8_t *const mask1d = eb_av1_get_obmc_mask(ctxt->overlap);
 
     int32_t *      wsrc = ctxt->wsrc_buf + (rel_mi_row * MI_SIZE * bw);
     int32_t *      mask = ctxt->mask_buf + (rel_mi_row * MI_SIZE * bw);

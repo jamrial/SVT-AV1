@@ -2261,7 +2261,7 @@ static const uint8_t obmc_mask_64[64] = {
         61, 62, 62, 62, 62, 62, 63, 63, 63, 63, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
 };
 
-const uint8_t *av1_get_obmc_mask(int length) {
+const uint8_t *eb_av1_get_obmc_mask(int length) {
     switch (length) {
         case 1: return obmc_mask_1;
         case 2: return obmc_mask_2;

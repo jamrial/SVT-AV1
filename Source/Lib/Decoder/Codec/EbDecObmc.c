@@ -47,7 +47,7 @@ int eb_av1_skip_u4x4_pred_in_obmc(BlockSize bsize, int dir, int32_t sub_x, int32
 
 // obmc_mask_N[overlap_position]
 
-const uint8_t *av1_get_obmc_mask(int length);
+const uint8_t *eb_av1_get_obmc_mask(int length);
 
 static INLINE void build_obmc_inter_pred_above(
     EbDecHandle *dec_handle, PartitionInfo *pi, BlockSize bsize, int rel_mi_col,
@@ -90,7 +90,7 @@ static INLINE void build_obmc_inter_pred_above(
             tmp_recon_stride = curr_recon_stride[plane];
         }
 
-        const uint8_t *const mask = av1_get_obmc_mask(bh);
+        const uint8_t *const mask = eb_av1_get_obmc_mask(bh);
 
         if (is_hbd)
             aom_highbd_blend_a64_vmask((tmp_recon_buf),
@@ -162,7 +162,7 @@ static INLINE void build_obmc_inter_pred_left(
             tmp_recon_stride = curr_recon_stride[plane];
         }
 
-        const uint8_t *const mask = av1_get_obmc_mask(bw);
+        const uint8_t *const mask = eb_av1_get_obmc_mask(bw);
 
         if (is_hbd)
             aom_highbd_blend_a64_hmask((uint8_t *)tmp_recon_buf,
