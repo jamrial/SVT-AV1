@@ -290,7 +290,7 @@ static INLINE void obmc_variance(const uint8_t *pre, int pre_stride, const int32
 }
 
 #define OBMC_VAR(W, H)                                                     \
-    unsigned int aom_obmc_variance##W##x##H##_c(const uint8_t *pre,        \
+    unsigned int eb_aom_obmc_variance##W##x##H##_c(const uint8_t *pre,        \
                                                 int            pre_stride, \
                                                 const int32_t *wsrc,       \
                                                 const int32_t *mask,       \
@@ -316,7 +316,7 @@ static INLINE void obmc_variance(const uint8_t *pre, int pre_stride, const int32
         aom_var_filter_block2d_bil_second_pass_c(                                    \
             fdata3, temp2, W, W, H, W, bilinear_filters_2t[yoffset]);                \
                                                                                      \
-        return aom_obmc_variance##W##x##H##_c(temp2, W, wsrc, mask, sse);            \
+        return eb_aom_obmc_variance##W##x##H##_c(temp2, W, wsrc, mask, sse);            \
     }
 
 OBMC_VAR(4, 4)
