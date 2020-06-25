@@ -137,7 +137,7 @@ int eb_av1_index_color_cache(const uint16_t *color_cache, int n_cache, const uin
     return j;
 }
 
-int av1_palette_color_cost_y(const PaletteModeInfo *const pmi, uint16_t *color_cache, int n_cache,
+int eb_av1_palette_color_cost_y(const PaletteModeInfo *const pmi, uint16_t *color_cache, int n_cache,
                              int bit_depth) {
     const int n = pmi->palette_size[0];
     int       out_cache_colors[PALETTE_MAX_SIZE];
