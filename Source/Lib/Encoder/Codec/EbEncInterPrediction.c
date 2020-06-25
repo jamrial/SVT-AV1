@@ -496,7 +496,7 @@ static void pick_wedge(PictureControlSet *picture_control_set_ptr, ModeDecisionC
             (1 << WEDGE_WEIGHT_BITS) / 2;
     int16_t *ds = residual0;
 
-    av1_wedge_compute_delta_squares(ds, residual0, residual1, N);
+    eb_av1_wedge_compute_delta_squares(ds, residual0, residual1, N);
 
     for (wedge_index = 0; wedge_index < wedge_types; ++wedge_index) {
         mask = av1_get_contiguous_soft_mask(wedge_index, 0, bsize);

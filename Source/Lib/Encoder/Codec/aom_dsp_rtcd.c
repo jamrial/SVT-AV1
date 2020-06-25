@@ -69,7 +69,7 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
 
     eb_aom_highbd_sse = aom_highbd_sse_c;
 
-    av1_wedge_compute_delta_squares = av1_wedge_compute_delta_squares_c;
+    eb_av1_wedge_compute_delta_squares = av1_wedge_compute_delta_squares_c;
     av1_wedge_sign_from_residuals = av1_wedge_sign_from_residuals_c;
 
     eb_compute_cdef_dist = compute_cdef_dist_c;
@@ -370,7 +370,7 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
     flags &= get_cpu_flags_to_use();
     if (flags & HAS_AVX2) eb_aom_sse = eb_aom_sse_avx2;
     if (flags & HAS_AVX2) eb_aom_highbd_sse = aom_highbd_sse_avx2;
-    if (flags & HAS_AVX2) av1_wedge_compute_delta_squares = av1_wedge_compute_delta_squares_avx2;
+    if (flags & HAS_AVX2) eb_av1_wedge_compute_delta_squares = av1_wedge_compute_delta_squares_avx2;
     if (flags & HAS_AVX2) av1_wedge_sign_from_residuals = av1_wedge_sign_from_residuals_avx2;
     if (flags & HAS_AVX2) eb_compute_cdef_dist = compute_cdef_dist_avx2;
     if (flags & HAS_AVX2) eb_compute_cdef_dist_8bit = compute_cdef_dist_8bit_avx2;
