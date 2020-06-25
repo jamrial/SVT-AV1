@@ -2101,7 +2101,7 @@ void av1_set_ref_frame(MvReferenceFrame *rf, int8_t ref_frame_type) {
     }
 }
 
-int av1_skip_u4x4_pred_in_obmc(BlockSize bsize, int dir, int subsampling_x, int subsampling_y) {
+int eb_av1_skip_u4x4_pred_in_obmc(BlockSize bsize, int dir, int subsampling_x, int subsampling_y) {
     assert(is_motion_variation_allowed_bsize(bsize));
 
     const BlockSize bsize_plane = get_plane_block_size(bsize, subsampling_x, subsampling_y);

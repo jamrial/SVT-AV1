@@ -1449,7 +1449,7 @@ static INLINE void build_prediction_by_above_pred(uint8_t is16bit, MacroBlockD *
                        4,
                        block_size_high[BLOCK_64X64] >> (subsampling_y + 1));
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
 
         if (j == 0)
             if (is16bit)
@@ -1541,7 +1541,7 @@ static INLINE void build_prediction_by_above_pred_hbd(uint8_t bit_depth, MacroBl
             4,
             block_size_high[BLOCK_64X64] >> (subsampling_y + 1));
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
 
         if (j == 0)
             get_single_prediction_for_obmc_luma_hbd(above_mbmi->block_mi.interp_filters,
@@ -1607,7 +1607,7 @@ static INLINE void build_prediction_by_left_pred(uint8_t is16bit, MacroBlockD *x
                        block_size_wide[BLOCK_64X64] >> (subsampling_x + 1));
         int bh = (left_mi_height << MI_SIZE_LOG2) >> subsampling_y;
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
 
         if (j == 0)
             if (is16bit)
@@ -1698,7 +1698,7 @@ static INLINE void build_prediction_by_left_pred_hbd(uint8_t bit_depth, MacroBlo
             block_size_wide[BLOCK_64X64] >> (subsampling_x + 1));
         int bh = (left_mi_height << MI_SIZE_LOG2) >> subsampling_y;
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
 
         if (j == 0)
             get_single_prediction_for_obmc_luma_hbd(left_mbmi->block_mi.interp_filters,
@@ -1931,7 +1931,7 @@ static INLINE void build_obmc_inter_pred_above(uint8_t is16bit, MacroBlockD *xd,
         const int plane_col     = (rel_mi_col * MI_SIZE) >> subsampling_x;
         const int plane_col_pos = plane_col << is16bit;
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
 
         const int dst_stride =
                 plane == 0 ? ctxt->final_dst_stride_y
@@ -1980,7 +1980,7 @@ static INLINE void build_obmc_inter_pred_above_hbd(uint8_t bit_depth, MacroBlock
         const int plane_col = (rel_mi_col * MI_SIZE) >> subsampling_x;
         const int plane_col_pos = plane_col << 1; /*is16bit*/
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 0, subsampling_x, subsampling_y)) continue;
 
         const int dst_stride =
             plane == 0 ? ctxt->final_dst_stride_y
@@ -2025,7 +2025,7 @@ static INLINE void build_obmc_inter_pred_left(uint8_t is16bit, MacroBlockD *xd, 
         const int plane_row     = (rel_mi_row * MI_SIZE) >> subsampling_y;
         const int plane_row_pos = plane_row << is16bit;
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
 
         const int dst_stride =
                 plane == 0 ? ctxt->final_dst_stride_y
@@ -2074,7 +2074,7 @@ static INLINE void build_obmc_inter_pred_left_hbd(uint8_t bit_depth, MacroBlockD
         const int plane_row = (rel_mi_row * MI_SIZE) >> subsampling_y;
         const int plane_row_pos = plane_row << 1; /*is16bit*/
 
-        if (av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
+        if (eb_av1_skip_u4x4_pred_in_obmc(bsize, 1, subsampling_x, subsampling_y)) continue;
 
         const int dst_stride =
             plane == 0 ? ctxt->final_dst_stride_y
