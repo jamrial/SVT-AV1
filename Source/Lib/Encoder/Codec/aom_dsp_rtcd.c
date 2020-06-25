@@ -157,7 +157,7 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
     eb_aom_sad128x64x4d = eb_aom_sad128x64x4d_c;
     eb_av1_txb_init_levels = eb_av1_txb_init_levels_c;
 
-    aom_upsampled_pred = aom_upsampled_pred_c;
+    aom_upsampled_pred = eb_aom_upsampled_pred_c;
 
     eb_aom_obmc_sad128x128 = eb_aom_obmc_sad128x128_c;
     eb_aom_obmc_sad128x64 = eb_aom_obmc_sad128x64_c;
