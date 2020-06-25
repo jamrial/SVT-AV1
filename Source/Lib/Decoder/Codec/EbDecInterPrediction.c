@@ -469,7 +469,7 @@ void svt_make_inter_predictor(PartitionInfo *part_info, int32_t ref, void *src, 
                                                 bh,
                                                 ss_x,
                                                 ss_y);
-        scaled_mv = av1_scale_mv(&temp_mv, (pre_x + 0), (pre_y + 0), sf);
+        scaled_mv = eb_av1_scale_mv(&temp_mv, (pre_x + 0), (pre_y + 0), sf);
         scaled_mv.row += SCALE_EXTRA_OFF;
         scaled_mv.col += SCALE_EXTRA_OFF;
         int32_t src_offset = (block.y0 * src_stride ) + block.x0;

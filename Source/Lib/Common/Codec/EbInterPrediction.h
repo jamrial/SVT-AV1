@@ -179,7 +179,7 @@ typedef struct WedgeParamsType
         return 2 * this_width >= ref_width && 2 * this_height >= ref_height &&
             this_width <= 16 * ref_width && this_height <= 16 * ref_height;
     }
-    MV32 av1_scale_mv(const MV *mvq4, int x, int y,
+    MV32 eb_av1_scale_mv(const MV *mvq4, int x, int y,
         const ScaleFactors *sf);
 
 
