@@ -2897,7 +2897,7 @@ int av1_find_best_obmc_sub_pixel_tree_up(ModeDecisionContext *context_ptr, Intra
                                          int *mvcost[2], int *distortion, unsigned int *sse1,
                                          int is_second, int use_accurate_subpel_search);
 
-int av1_obmc_full_pixel_search(ModeDecisionContext *context_ptr, IntraBcContext *x, MV *mvp_full,
+int eb_av1_obmc_full_pixel_search(ModeDecisionContext *context_ptr, IntraBcContext *x, MV *mvp_full,
                                int sadpb, const AomVarianceFnPtr *fn_ptr, const MV *ref_mv,
                                MV *dst_mv, int is_second);
 
@@ -2950,7 +2950,7 @@ static void single_motion_search(PictureControlSet *pcs, ModeDecisionContext *co
 
     switch (candidate_ptr->motion_mode) {
     case OBMC_CAUSAL:
-        bestsme = av1_obmc_full_pixel_search(
+        bestsme = eb_av1_obmc_full_pixel_search(
             context_ptr, x, &mvp_full, sadpb, &mefn_ptr[bsize], ref_mv, &(x->best_mv.as_mv), 0);
         break;
     default: assert(0 && "Invalid motion mode!\n");

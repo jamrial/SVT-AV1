@@ -692,7 +692,7 @@ static int obmc_refining_search_sad(const IntraBcContext *x, const int32_t *wsrc
     return best_sad;
 }
 
-int av1_obmc_full_pixel_search(ModeDecisionContext *context_ptr, IntraBcContext *x, MV *mvp_full,
+int eb_av1_obmc_full_pixel_search(ModeDecisionContext *context_ptr, IntraBcContext *x, MV *mvp_full,
                                int sadpb, const AomVarianceFnPtr *fn_ptr, const MV *ref_mv,
                                MV *dst_mv, int is_second) {
     // obmc_full_pixel_diamond does not provide BDR gain on 360p
