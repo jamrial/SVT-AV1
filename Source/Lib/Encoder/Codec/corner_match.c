@@ -40,7 +40,7 @@ static double compute_variance(unsigned char *im, int stride, int x, int y) {
    correlation/standard deviation are taken over MATCH_SZ by MATCH_SZ windows
    of each image, centered at (x1, y1) and (x2, y2) respectively.
 */
-double av1_compute_cross_correlation_c(unsigned char *im1, int stride1, int x1, int y1,
+double eb_av1_compute_cross_correlation_c(unsigned char *im1, int stride1, int x1, int y1,
                                        unsigned char *im2, int stride2, int x2, int y2) {
     int v1, v2;
     int sum1   = 0;
@@ -95,7 +95,7 @@ static void improve_correspondence(unsigned char *frm, unsigned char *ref, int w
                                           width,
                                           height))
                     continue;
-                match_ncc = av1_compute_cross_correlation(frm,
+                match_ncc = eb_av1_compute_cross_correlation(frm,
                                                           frm_stride,
                                                           correspondences[i].x,
                                                           correspondences[i].y,
@@ -129,7 +129,7 @@ static void improve_correspondence(unsigned char *frm, unsigned char *ref, int w
                                           width,
                                           height))
                     continue;
-                match_ncc = av1_compute_cross_correlation(ref,
+                match_ncc = eb_av1_compute_cross_correlation(ref,
                                                           ref_stride,
                                                           correspondences[i].rx,
                                                           correspondences[i].ry,
@@ -171,7 +171,7 @@ int av1_determine_correspondence(unsigned char *frm, int *frm_corners, int num_f
                                       width,
                                       height))
                 continue;
-            match_ncc = av1_compute_cross_correlation(frm,
+            match_ncc = eb_av1_compute_cross_correlation(frm,
                                                       frm_stride,
                                                       frm_corners[2 * i],
                                                       frm_corners[2 * i + 1],
@@ -186,7 +186,7 @@ int av1_determine_correspondence(unsigned char *frm, int *frm_corners, int num_f
         }
         // Note: We want to test if the best correlation is >= THRESHOLD_NCC,
         // but need to account for the normalization in
-        // av1_compute_cross_correlation.
+        // eb_av1_compute_cross_correlation.
         template_norm =
             compute_variance(frm, frm_stride, frm_corners[2 * i], frm_corners[2 * i + 1]);
         if (best_match_ncc > THRESHOLD_NCC * sqrt(template_norm)) {
