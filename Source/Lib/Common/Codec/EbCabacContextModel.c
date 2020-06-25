@@ -3188,7 +3188,7 @@ int palette_color_index_context_lookup[MAX_COLOR_CONTEXT_HASH + 1] = {
         -1, -1, 0, -1, -1, 4, 3, 2, 1};
 
 #define NUM_PALETTE_NEIGHBORS 3 // left, top-left and top.
-int av1_get_palette_color_index_context(const uint8_t *color_map, int stride, int r, int c,
+int eb_av1_get_palette_color_index_context(const uint8_t *color_map, int stride, int r, int c,
                                         int palette_size, uint8_t *color_order, int *color_idx) {
     assert(palette_size <= PALETTE_MAX_SIZE);
     assert(r > 0 || c > 0);
@@ -3259,7 +3259,7 @@ int av1_get_palette_color_index_context(const uint8_t *color_map, int stride, in
     return color_index_ctx;
 }
 
-int av1_get_palette_color_index_context_optimized(const uint8_t *color_map, int stride, int r,
+int eb_av1_get_palette_color_index_context_optimized(const uint8_t *color_map, int stride, int r,
                                                   int c, int palette_size, int *color_idx) {
     assert(palette_size <= PALETTE_MAX_SIZE);
     assert(r > 0 || c > 0);
