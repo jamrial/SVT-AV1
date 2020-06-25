@@ -1971,7 +1971,7 @@ void build_masked_compound_no_round(uint8_t *dst, int dst_stride, const CONV_BUF
                                       conv_params,
                                       bit_depth);
     } else {
-        aom_lowbd_blend_a64_d16_mask(dst,
+        eb_aom_lowbd_blend_a64_d16_mask(dst,
                                      dst_stride,
                                      src0,
                                      src0_stride,

@@ -338,7 +338,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
 
     eb_aom_subtract_block = eb_aom_subtract_block_c;
 
-    aom_lowbd_blend_a64_d16_mask = aom_lowbd_blend_a64_d16_mask_c;
+    eb_aom_lowbd_blend_a64_d16_mask = eb_aom_lowbd_blend_a64_d16_mask_c;
     aom_highbd_blend_a64_d16_mask = aom_highbd_blend_a64_d16_mask_c;
 
     aom_highbd_subtract_block = aom_highbd_subtract_block_c;
@@ -943,7 +943,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
         if (flags & HAS_AVX2) eb_av1_build_compound_diffwtd_mask_highbd = eb_av1_build_compound_diffwtd_mask_highbd_avx2;
         if (flags & HAS_AVX2) eb_av1_wedge_sse_from_residuals = eb_av1_wedge_sse_from_residuals_avx2;
         if (flags & HAS_AVX2) eb_aom_subtract_block = eb_aom_subtract_block_avx2;
-        if (flags & HAS_AVX2) aom_lowbd_blend_a64_d16_mask = aom_lowbd_blend_a64_d16_mask_avx2;
+        if (flags & HAS_AVX2) eb_aom_lowbd_blend_a64_d16_mask = eb_aom_lowbd_blend_a64_d16_mask_avx2;
         if (flags & HAS_AVX2) aom_highbd_blend_a64_d16_mask = aom_highbd_blend_a64_d16_mask_avx2;
         if (flags & HAS_AVX2) aom_highbd_subtract_block = aom_highbd_subtract_block_sse2;
         if (flags & HAS_AVX2) eb_aom_highbd_smooth_v_predictor_16x16 = eb_aom_highbd_smooth_v_predictor_16x16_avx2;
