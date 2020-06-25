@@ -4812,7 +4812,7 @@ void av1_tokenize_color_map(FRAME_CONTEXT *frame_context, BlkStruct *blk_ptr, in
 void av1_get_block_dimensions(BlockSize bsize, int plane, const MacroBlockD *xd, int *width,
                               int *height, int *rows_within_bounds, int *cols_within_bounds);
 int  eb_get_palette_cache(const MacroBlockD *const xd, int plane, uint16_t *cache);
-int  av1_index_color_cache(const uint16_t *color_cache, int n_cache, const uint16_t *colors,
+int  eb_av1_index_color_cache(const uint16_t *color_cache, int n_cache, const uint16_t *colors,
                            int n_colors, uint8_t *cache_color_found, int *out_cache_colors);
 
 int av1_get_palette_mode_ctx(const MacroBlockD *xd) {
@@ -4888,7 +4888,7 @@ static AOM_INLINE void write_palette_colors_y(const MacroBlockD *const     xd,
     const int n_cache = eb_get_palette_cache(xd, 0, color_cache);
     int       out_cache_colors[PALETTE_MAX_SIZE];
     uint8_t   cache_color_found[2 * PALETTE_MAX_SIZE];
-    const int n_out_cache = av1_index_color_cache(
+    const int n_out_cache = eb_av1_index_color_cache(
         color_cache, n_cache, pmi->palette_colors, n, cache_color_found, out_cache_colors);
     int n_in_cache = 0;
     for (int i = 0; i < n_cache && n_in_cache < n; ++i) {

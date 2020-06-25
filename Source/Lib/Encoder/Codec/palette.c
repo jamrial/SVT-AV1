@@ -110,7 +110,7 @@ static int delta_encode_cost(const int *colors, int num, int bit_depth, int min_
     return bits_cost;
 }
 
-int av1_index_color_cache(const uint16_t *color_cache, int n_cache, const uint16_t *colors,
+int eb_av1_index_color_cache(const uint16_t *color_cache, int n_cache, const uint16_t *colors,
                           int n_colors, uint8_t *cache_color_found, int *out_cache_colors) {
     if (n_cache <= 0) {
         for (int i = 0; i < n_colors; ++i) out_cache_colors[i] = colors[i];
@@ -142,7 +142,7 @@ int av1_palette_color_cost_y(const PaletteModeInfo *const pmi, uint16_t *color_c
     const int n = pmi->palette_size[0];
     int       out_cache_colors[PALETTE_MAX_SIZE];
     uint8_t   cache_color_found[2 * PALETTE_MAX_SIZE];
-    const int n_out_cache = av1_index_color_cache(
+    const int n_out_cache = eb_av1_index_color_cache(
         color_cache, n_cache, pmi->palette_colors, n, cache_color_found, out_cache_colors);
     const int total_bits = n_cache + delta_encode_cost(out_cache_colors, n_out_cache, bit_depth, 1);
     return av1_cost_literal(total_bits);
