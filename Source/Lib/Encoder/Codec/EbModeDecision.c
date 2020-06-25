@@ -2889,7 +2889,7 @@ static int sad_per_bit4lut_8[QINDEX_RANGE];
 
 extern AomVarianceFnPtr mefn_ptr[BlockSizeS_ALL];
 
-int av1_find_best_obmc_sub_pixel_tree_up(ModeDecisionContext *context_ptr, IntraBcContext *x,
+int eb_av1_find_best_obmc_sub_pixel_tree_up(ModeDecisionContext *context_ptr, IntraBcContext *x,
                                          const AV1_COMMON *const cm, int mi_row, int mi_col,
                                          MV *bestmv, const MV *ref_mv, int allow_hp,
                                          int error_per_bit, const AomVarianceFnPtr *vfp,
@@ -2963,7 +2963,7 @@ static void single_motion_search(PictureControlSet *pcs, ModeDecisionContext *co
         int dis; /* TODO: use dis in distortion calculation later. */
         switch (candidate_ptr->motion_mode) {
         case OBMC_CAUSAL:
-            av1_find_best_obmc_sub_pixel_tree_up(context_ptr,
+            eb_av1_find_best_obmc_sub_pixel_tree_up(context_ptr,
                                                  x,
                                                  cm,
                                                  mi_row,

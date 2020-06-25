@@ -922,7 +922,7 @@ static INLINE const uint8_t *pre(const uint8_t *buf, int stride, int r, int c) {
     return buf + offset;
 }
 
-int av1_find_best_obmc_sub_pixel_tree_up(ModeDecisionContext *context_ptr, IntraBcContext *x,
+int eb_av1_find_best_obmc_sub_pixel_tree_up(ModeDecisionContext *context_ptr, IntraBcContext *x,
                                          const AV1_COMMON *const cm, int mi_row, int mi_col,
                                          MV *bestmv, const MV *ref_mv, int allow_hp,
                                          int error_per_bit, const AomVarianceFnPtr *vfp,
