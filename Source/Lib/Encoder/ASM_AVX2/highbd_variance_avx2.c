@@ -18,7 +18,7 @@ typedef void (*HighVarianceFn)(const uint16_t *src, int src_stride,
                                const uint16_t *ref, int ref_stride,
                                uint32_t *sse, int *sum);
 
-void aom_highbd_calc8x8var_avx2(const uint16_t *src, int src_stride,
+void eb_aom_highbd_calc8x8var_avx2(const uint16_t *src, int src_stride,
                                 const uint16_t *ref, int ref_stride,
                                 uint32_t *sse, int *sum) {
   __m256i v_sum_d = _mm256_setzero_si256();
@@ -53,7 +53,7 @@ void aom_highbd_calc8x8var_avx2(const uint16_t *src, int src_stride,
   *sse = _mm_extract_epi32(v_d, 1);
 }
 
-void aom_highbd_calc16x16var_avx2(const uint16_t *src, int src_stride,
+void eb_aom_highbd_calc16x16var_avx2(const uint16_t *src, int src_stride,
                                   const uint16_t *ref, int ref_stride,
                                   uint32_t *sse, int *sum) {
   __m256i v_sum_d = _mm256_setzero_si256();
@@ -113,7 +113,7 @@ static void highbd_10_variance_avx2(const uint16_t *src, int src_stride,
     uint16_t *ref = CONVERT_TO_SHORTPTR(ref8);                             \
     highbd_10_variance_avx2(                                               \
         src, src_stride, ref, ref_stride, w, h, sse, &sum,                 \
-        aom_highbd_calc##block_size##x##block_size##var_avx2, block_size); \
+        eb_aom_highbd_calc##block_size##x##block_size##var_avx2, block_size); \
     var = (int64_t)(*sse) - (((int64_t)sum * sum) >> shift);               \
     return (var >= 0) ? (uint32_t)var : 0;                                 \
   }
@@ -151,7 +151,7 @@ static inline void variance_highbd_32x32_avx2(const uint16_t *src, int src_strid
 
     for (int i = 0; i < 32; i += 16) {
         for (int j = 0; j < 32; j += 16) {
-            aom_highbd_calc16x16var_avx2(src + src_stride * i + j,
+            eb_aom_highbd_calc16x16var_avx2(src + src_stride * i + j,
                                          src_stride,
                                          ref + ref_stride * i + j,
                                          ref_stride,
@@ -174,7 +174,7 @@ uint32_t variance_highbd_avx2(const uint16_t *a, int a_stride, const uint16_t *b
     *sse    = 0;
 
     switch (w) {
-    case 16: aom_highbd_calc16x16var_avx2(a, a_stride, b, b_stride, sse,&sum); break;
+    case 16: eb_aom_highbd_calc16x16var_avx2(a, a_stride, b, b_stride, sse,&sum); break;
     case 32: variance_highbd_32x32_avx2(a, a_stride, b, b_stride, sse, &sum); break;
     default: assert(0);
     }
