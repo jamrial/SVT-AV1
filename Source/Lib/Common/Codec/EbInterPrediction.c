@@ -2230,7 +2230,7 @@ void eb_aom_highbd_blend_a64_hmask_c(uint16_t *dst, uint32_t dst_stride, const u
     }
 }
 
-uint64_t aom_sum_squares_i16_c(const int16_t *src, uint32_t n) {
+uint64_t eb_aom_sum_squares_i16_c(const int16_t *src, uint32_t n) {
     uint64_t ss = 0;
     do {
         const int16_t v = *src++;

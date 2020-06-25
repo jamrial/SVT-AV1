@@ -1852,7 +1852,7 @@ static INLINE uint64_t xx_cvtsi128_si64(__m128i a) {
     }
 #endif
 }
-static uint64_t aom_sum_squares_i16_64n_sse2(const int16_t *src, uint32_t n) {
+static uint64_t eb_aom_sum_squares_i16_64n_sse2(const int16_t *src, uint32_t n) {
     const __m128i v_zext_mask_q = xx_set1_64_from_32i(0xffffffff);
     __m128i       v_acc0_q      = _mm_setzero_si128();
     __m128i       v_acc1_q      = _mm_setzero_si128();
@@ -1901,14 +1901,14 @@ static uint64_t aom_sum_squares_i16_64n_sse2(const int16_t *src, uint32_t n) {
     return xx_cvtsi128_si64(v_acc0_q);
 }
 
-uint64_t aom_sum_squares_i16_sse2(const int16_t *src, uint32_t n) {
+uint64_t eb_aom_sum_squares_i16_sse2(const int16_t *src, uint32_t n) {
     if (n % 64 == 0) {
-        return aom_sum_squares_i16_64n_sse2(src, n);
+        return eb_aom_sum_squares_i16_64n_sse2(src, n);
     } else if (n > 64) {
         int k = n & ~(64 - 1);
-        return aom_sum_squares_i16_64n_sse2(src, k) + aom_sum_squares_i16_c(src + k, n - k);
+        return eb_aom_sum_squares_i16_64n_sse2(src, k) + eb_aom_sum_squares_i16_c(src + k, n - k);
     } else {
-        return aom_sum_squares_i16_c(src, n);
+        return eb_aom_sum_squares_i16_c(src, n);
     }
 }
 

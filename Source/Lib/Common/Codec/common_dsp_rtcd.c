@@ -412,7 +412,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
     eb_aom_highbd_paeth_predictor_8x32 = eb_aom_highbd_paeth_predictor_8x32_c;
     eb_aom_highbd_paeth_predictor_8x4 = eb_aom_highbd_paeth_predictor_8x4_c;
     eb_aom_highbd_paeth_predictor_8x8 = eb_aom_highbd_paeth_predictor_8x8_c;
-    aom_sum_squares_i16 = aom_sum_squares_i16_c;
+    eb_aom_sum_squares_i16 = eb_aom_sum_squares_i16_c;
     eb_aom_dc_predictor_4x4 = eb_aom_dc_predictor_4x4_c;
     eb_aom_dc_predictor_8x8 = eb_aom_dc_predictor_8x8_c;
     eb_aom_dc_predictor_16x16 = eb_aom_dc_predictor_16x16_c;
@@ -1033,7 +1033,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
         if (flags & HAS_AVX2) eb_aom_highbd_paeth_predictor_8x32 = eb_aom_highbd_paeth_predictor_8x32_avx2;
         if (flags & HAS_AVX2) eb_aom_highbd_paeth_predictor_8x4 = eb_aom_highbd_paeth_predictor_8x4_avx2;
         if (flags & HAS_AVX2) eb_aom_highbd_paeth_predictor_8x8 = eb_aom_highbd_paeth_predictor_8x8_avx2;
-        if (flags & HAS_SSE2) aom_sum_squares_i16 = aom_sum_squares_i16_sse2;
+        if (flags & HAS_SSE2) eb_aom_sum_squares_i16 = eb_aom_sum_squares_i16_sse2;
         if (flags & HAS_SSE2) eb_aom_dc_predictor_4x4 = eb_aom_dc_predictor_4x4_sse2;
         if (flags & HAS_SSE2) eb_aom_dc_predictor_8x8 = eb_aom_dc_predictor_8x8_sse2;
         if (flags & HAS_SSE2) eb_aom_dc_predictor_16x16 = eb_aom_dc_predictor_16x16_sse2;
