@@ -501,7 +501,7 @@ void get_txb_ctx(PictureControlSet *pcs_ptr, const int32_t plane,
 #undef MAX_TX_SIZE_UNIT
 }
 
-void av1_write_tx_type(PictureParentControlSet *pcs_ptr, FRAME_CONTEXT *frame_context,
+static void av1_write_tx_type(PictureParentControlSet *pcs_ptr, FRAME_CONTEXT *frame_context,
                        AomWriter *ec_writer, BlkStruct *blk_ptr, uint32_t intraDir, TxType tx_type,
                        TxSize tx_size) {
     FrameHeader * frm_hdr = &pcs_ptr->frm_hdr;

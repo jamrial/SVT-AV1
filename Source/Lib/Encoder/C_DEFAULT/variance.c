@@ -29,7 +29,7 @@
 // taps should sum to FILTER_WEIGHT. pixel_step defines whether the filter is
 // applied horizontally (pixel_step = 1) or vertically (pixel_step = stride).
 // It defines the offset required to move from one input to the next.
-void aom_var_filter_block2d_bil_first_pass_c(const uint8_t *a, uint16_t *b,
+static void aom_var_filter_block2d_bil_first_pass_c(const uint8_t *a, uint16_t *b,
                                              unsigned int src_pixels_per_line,
                                              unsigned int pixel_step, unsigned int output_height,
                                              unsigned int output_width, const uint8_t *filter) {
@@ -57,7 +57,7 @@ void aom_var_filter_block2d_bil_first_pass_c(const uint8_t *a, uint16_t *b,
 // filter is applied horizontally (pixel_step = 1) or vertically
 // (pixel_step = stride). It defines the offset required to move from one input
 // to the next. Output is 8-bit.
-void aom_var_filter_block2d_bil_second_pass_c(const uint16_t *a, uint8_t *b,
+static void aom_var_filter_block2d_bil_second_pass_c(const uint16_t *a, uint8_t *b,
                                               unsigned int src_pixels_per_line,
                                               unsigned int pixel_step, unsigned int output_height,
                                               unsigned int output_width, const uint8_t *filter) {

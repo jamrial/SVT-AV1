@@ -39,7 +39,7 @@ void calculate_scaled_size_helper(uint16_t *dim, uint8_t denom) {
     }
 }
 
-int32_t av1_get_upscale_convolve_step(int in_length, int out_length) {
+static int32_t av1_get_upscale_convolve_step(int in_length, int out_length) {
     return ((in_length << RS_SCALE_SUBPEL_BITS) + out_length / 2) / out_length;
 }
 
@@ -51,7 +51,7 @@ int32_t get_upscale_convolve_x0(int in_length, int out_length, int32_t x_step_qn
     return (int32_t)((uint32_t)x0 & RS_SCALE_SUBPEL_MASK);
 }
 
-void av1_convolve_horiz_rs_c(const uint8_t *src, int src_stride, uint8_t *dst, int dst_stride,
+static void av1_convolve_horiz_rs_c(const uint8_t *src, int src_stride, uint8_t *dst, int dst_stride,
                              int w, int h, const int16_t *x_filters, int x0_qn, int x_step_qn) {
     src -= UPSCALE_NORMATIVE_TAPS / 2 - 1;
     for (int y = 0; y < h; ++y) {
@@ -71,7 +71,7 @@ void av1_convolve_horiz_rs_c(const uint8_t *src, int src_stride, uint8_t *dst, i
     }
 }
 
-void av1_highbd_convolve_horiz_rs_c(const uint16_t *src, int src_stride, uint16_t *dst,
+static void av1_highbd_convolve_horiz_rs_c(const uint16_t *src, int src_stride, uint16_t *dst,
                                     int dst_stride, int w, int h, const int16_t *x_filters,
                                     int x0_qn, int x_step_qn, int bd) {
     src -= UPSCALE_NORMATIVE_TAPS / 2 - 1;

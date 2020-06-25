@@ -570,7 +570,7 @@ static INLINE InterpFilter av1_extract_interp_filter(InterpFilters filters, int3
 * 2 - intra/--, --/intra
 * 3 - intra/intra
  ******************************************************************************/
-int av1_get_intra_inter_context(const MacroBlockD *xd) {
+static int av1_get_intra_inter_context(const MacroBlockD *xd) {
     const MbModeInfo *const above_mbmi = xd->above_mbmi;
     const MbModeInfo *const left_mbmi  = xd->left_mbmi;
     const int               has_above  = xd->up_available;
@@ -693,7 +693,7 @@ MvJointType av1_get_mv_joint(const MV *mv);
 /*******************************************************************************
  * Updates all the mv stats/CDF for the current block
  ******************************************************************************/
-void av1_update_mv_stats(const MV *mv, const MV *ref, NmvContext *mvctx,
+static void av1_update_mv_stats(const MV *mv, const MV *ref, NmvContext *mvctx,
                          MvSubpelPrecision precision) {
     const MV          diff = {mv->row - ref->row, mv->col - ref->col};
     const MvJointType j    = av1_get_mv_joint(&diff);

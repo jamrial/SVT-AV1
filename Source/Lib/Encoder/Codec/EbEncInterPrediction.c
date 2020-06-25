@@ -48,7 +48,7 @@ static INLINE MV clamp_mv_to_umv_border_sb(const MacroBlockD *xd, const MV *src_
     return clamped_mv;
 }
 
-void av1_make_masked_inter_predictor(uint8_t *src_ptr, uint32_t src_stride, uint8_t *dst_ptr,
+static void av1_make_masked_inter_predictor(uint8_t *src_ptr, uint32_t src_stride, uint8_t *dst_ptr,
                                      uint32_t dst_stride, const BlockGeom *blk_geom, uint8_t bwidth,
                                      uint8_t bheight, InterpFilterParams *filter_params_x,
                                      InterpFilterParams *filter_params_y, int32_t subpel_x,
@@ -315,7 +315,7 @@ static const double interp_dgrid_curv[2][65] = {
     PRECALC[A][B][3] = ARRAY[A][B+1]
 */
 
-void av1_model_rd_curvfit(BlockSize bsize, double sse_norm, double xqr, double *rate_f,
+static void av1_model_rd_curvfit(BlockSize bsize, double sse_norm, double xqr, double *rate_f,
                           double *distbysse_f) {
     const double x_start = -15.5;
     const double x_end   = 16.5;
@@ -988,7 +988,7 @@ static INLINE void foreach_overlappable_nb_left(uint8_t is16bit, const AV1_COMMO
     }
 }
 
-void av1_setup_build_prediction_by_above_pred(MacroBlockD *xd, int rel_mi_col,
+static void av1_setup_build_prediction_by_above_pred(MacroBlockD *xd, int rel_mi_col,
                                               uint8_t above_mi_width, MbModeInfo *above_mbmi,
                                               struct build_prediction_ctxt *ctxt,
                                               const int num_planes, uint8_t is16bit) {
@@ -1019,7 +1019,7 @@ void av1_setup_build_prediction_by_above_pred(MacroBlockD *xd, int rel_mi_col,
     xd->mb_to_right_edge =
             ctxt->mb_to_far_edge + (xd->n4_w - rel_mi_col - above_mi_width) * MI_SIZE * 8;
 }
-void av1_setup_build_prediction_by_above_pred_hbd(MacroBlockD *xd, int rel_mi_col,
+static void av1_setup_build_prediction_by_above_pred_hbd(MacroBlockD *xd, int rel_mi_col,
     uint8_t above_mi_width, MbModeInfo *above_mbmi,
     struct build_prediction_ctxt *ctxt,
     const int                     num_planes) {
@@ -1044,7 +1044,7 @@ void av1_setup_build_prediction_by_above_pred_hbd(MacroBlockD *xd, int rel_mi_co
     xd->mb_to_right_edge =
         ctxt->mb_to_far_edge + (xd->n4_w - rel_mi_col - above_mi_width) * MI_SIZE * 8;
 }
-void av1_setup_build_prediction_by_left_pred(MacroBlockD *xd, int rel_mi_row,
+static void av1_setup_build_prediction_by_left_pred(MacroBlockD *xd, int rel_mi_row,
                                              uint8_t left_mi_height, MbModeInfo *left_mbmi,
                                              struct build_prediction_ctxt *ctxt,
                                              const int num_planes, uint8_t is16bit) {
@@ -2104,7 +2104,7 @@ static INLINE void build_obmc_inter_pred_left_hbd(uint8_t bit_depth, MacroBlockD
 // top/left neighboring blocks' inter predictors with the regular inter
 // prediction. We assume the original prediction (bmc) is stored in
 // xd->plane[].dst.buf
-void av1_build_obmc_inter_prediction(uint8_t *final_dst_ptr_y, uint16_t final_dst_stride_y,
+static void av1_build_obmc_inter_prediction(uint8_t *final_dst_ptr_y, uint16_t final_dst_stride_y,
                                      uint8_t *final_dst_ptr_u, uint16_t final_dst_stride_u,
                                      uint8_t *final_dst_ptr_v, uint16_t final_dst_stride_v,
                                      EbBool perform_chroma, BlockSize bsize,

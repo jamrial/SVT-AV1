@@ -1636,7 +1636,7 @@ const uint8_t *av1_get_contiguous_soft_mask(int wedge_index, int wedge_sign,
     return wedge_params_lookup[sb_type].masks[wedge_sign][wedge_index];
 }
 
-void aom_convolve_copy_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
+static void aom_convolve_copy_c(const uint8_t *src, ptrdiff_t src_stride, uint8_t *dst,
                          ptrdiff_t dst_stride, const int16_t *filter_x, int filter_x_stride,
                          const int16_t *filter_y, int filter_y_stride, int w, int h) {
 
@@ -1932,7 +1932,7 @@ void combine_interintra_highbd(InterIntraMode mode, uint8_t use_wedge_interintra
                               bd);
 }
 
-const uint8_t *av1_get_compound_type_mask(const InterInterCompoundData *const comp_data,
+static const uint8_t *av1_get_compound_type_mask(const InterInterCompoundData *const comp_data,
                                           uint8_t *seg_mask, BlockSize sb_type) {
     assert(is_masked_compound_type(comp_data->type));
     (void)sb_type;

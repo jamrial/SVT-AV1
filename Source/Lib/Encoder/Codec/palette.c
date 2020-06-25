@@ -71,7 +71,7 @@ static inline void av1_k_means(const int *data, int *centroids, uint8_t *indices
 
 static int int_comparer(const void *a, const void *b) { return (*(int *)a - *(int *)b); }
 
-int av1_remove_duplicates(int *centroids, int num_centroids) {
+static int av1_remove_duplicates(int *centroids, int num_centroids) {
     int num_unique; // number of unique centroids
     int i;
     qsort(centroids, num_centroids, sizeof(*centroids), int_comparer);
@@ -228,7 +228,6 @@ void av1_get_block_dimensions(BlockSize bsize, int plane, const MacroBlockD *xd,
     }
 }
 
-int av1_remove_duplicates(int *centroids, int num_centroids);
 // Bias toward using colors in the cache.
 // TODO: Try other schemes to improve compression.
 static AOM_INLINE void optimize_palette_colors(uint16_t *color_cache, int n_cache, int n_colors,
@@ -300,7 +299,7 @@ void palette_rd_y(PaletteInfo *palette_info, ModeDecisionContext *context_ptr, B
 }
 
 int eb_av1_count_colors(const uint8_t *src, int stride, int rows, int cols, int *val_count);
-int av1_count_colors_highbd(uint16_t *src, int stride, int rows, int cols, int bit_depth,
+int eb_av1_count_colors_highbd(uint16_t *src, int stride, int rows, int cols, int bit_depth,
                             int *val_count);
 /****************************************
    determine all palette luma candidates
@@ -377,7 +376,7 @@ void search_palette_luma(PictureControlSet *pcs_ptr, ModeDecisionContext *contex
 
     unsigned bit_depth = pcs_ptr->parent_pcs_ptr->scs_ptr->encoder_bit_depth;
     if (is16bit)
-        colors = av1_count_colors_highbd((uint16_t *)src, src_stride, rows, cols,
+        colors = eb_av1_count_colors_highbd((uint16_t *)src, src_stride, rows, cols,
             bit_depth, count_buf);
     else
         colors = eb_av1_count_colors(src, src_stride, rows, cols, count_buf);
