@@ -488,7 +488,7 @@ static void pick_wedge(PictureControlSet *picture_control_set_ptr, ModeDecisionC
     } else {
         uint8_t *src_buf = src_pic->buffer_y + (context_ptr->blk_origin_x + src_pic->origin_x) +
                            (context_ptr->blk_origin_y + src_pic->origin_y) * src_pic->stride_y;
-        aom_subtract_block(
+        eb_aom_subtract_block(
                 bh, bw, residual0, bw, src_buf /*src->buf*/, src_pic->stride_y /*src->stride*/, p0, bw);
     }
     int64_t sign_limit =
@@ -6251,7 +6251,7 @@ void search_compound_diff_wedge(PictureControlSet *    picture_control_set_ptr,
         } else {
             uint8_t *src_buf = src_pic->buffer_y + (context_ptr->blk_origin_x + src_pic->origin_x) +
                                (context_ptr->blk_origin_y + src_pic->origin_y) * src_pic->stride_y;
-            aom_subtract_block(bheight,
+            eb_aom_subtract_block(bheight,
                                bwidth,
                                context_ptr->residual1,
                                bwidth,
@@ -6259,7 +6259,7 @@ void search_compound_diff_wedge(PictureControlSet *    picture_control_set_ptr,
                                src_pic->stride_y,
                                context_ptr->pred1,
                                bwidth);
-            aom_subtract_block(bheight,
+            eb_aom_subtract_block(bheight,
                                bwidth,
                                context_ptr->diff10,
                                bwidth,

@@ -1642,7 +1642,7 @@ static INLINE void aom_subtract_block_128xn_avx2(int rows, int16_t *diff_ptr, pt
         diff_ptr += diff_stride;
     }
 }
-void aom_subtract_block_avx2(int rows, int cols, int16_t *diff_ptr, ptrdiff_t diff_stride,
+void eb_aom_subtract_block_avx2(int rows, int cols, int16_t *diff_ptr, ptrdiff_t diff_stride,
                              const uint8_t *src_ptr, ptrdiff_t src_stride, const uint8_t *pred_ptr,
                              ptrdiff_t pred_stride) {
     switch (cols) {

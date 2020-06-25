@@ -66,7 +66,7 @@ void aom_highbd_subtract_block_c(int rows, int cols, int16_t *diff, ptrdiff_t di
     }
 }
 
-void aom_subtract_block_c(int rows, int cols, int16_t *diff, ptrdiff_t diff_stride,
+void eb_aom_subtract_block_c(int rows, int cols, int16_t *diff, ptrdiff_t diff_stride,
                           const uint8_t *src, ptrdiff_t src_stride, const uint8_t *pred,
                           ptrdiff_t pred_stride) {
 

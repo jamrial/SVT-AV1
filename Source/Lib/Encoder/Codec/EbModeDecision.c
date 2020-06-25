@@ -223,8 +223,8 @@ static int64_t pick_interintra_wedge(ModeDecisionCandidate *candidate_ptr,
         aom_highbd_subtract_block(bh, bw, diff10, bw, p1, bw, p0, bw, EB_10BIT);
 
     } else {
-        aom_subtract_block(bh, bw, residual1, bw, src_buf, src_stride, p1, bw);
-        aom_subtract_block(bh, bw, diff10, bw, p1, bw, p0, bw);
+        eb_aom_subtract_block(bh, bw, residual1, bw, src_buf, src_stride, p1, bw);
+        eb_aom_subtract_block(bh, bw, diff10, bw, p1, bw, p0, bw);
     }
 
     int8_t  wedge_index = -1;
