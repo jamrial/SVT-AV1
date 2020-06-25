@@ -54,9 +54,9 @@ static inline void av1_calc_indices(const int *data, const int *centroids, uint8
 static inline void av1_k_means(const int *data, int *centroids, uint8_t *indices, int n, int k,
                                int dim, int max_itr) {
     if (dim == 1) {
-        av1_k_means_dim1(data, centroids, indices, n, k, max_itr);
+        eb_av1_k_means_dim1(data, centroids, indices, n, k, max_itr);
     } else if (dim == 2) {
-        av1_k_means_dim2(data, centroids, indices, n, k, max_itr);
+        eb_av1_k_means_dim2(data, centroids, indices, n, k, max_itr);
     } else {
         assert(0 && "Untemplated k means dimension");
     }

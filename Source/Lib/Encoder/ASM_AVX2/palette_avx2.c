@@ -156,7 +156,7 @@ static INLINE void calc_centroids_1_avx2(const int *data, int *centroids, const 
     }
 }
 
-void av1_k_means_dim1_avx2(const int *data, int *centroids, uint8_t *indices, int n, int k,
+void eb_av1_k_means_dim1_avx2(const int *data, int *centroids, uint8_t *indices, int n, int k,
                            int max_itr) {
     int     pre_centroids[2 * PALETTE_MAX_SIZE];
     uint8_t pre_indices[MAX_SB_SQUARE];
@@ -370,7 +370,7 @@ static INLINE void calc_centroids_2_avx2(const int *data, int *centroids, const 
     }
 }
 
-void av1_k_means_dim2_avx2(const int *data, int *centroids, uint8_t *indices, int n, int k,
+void eb_av1_k_means_dim2_avx2(const int *data, int *centroids, uint8_t *indices, int n, int k,
                            int max_itr) {
     int     pre_centroids[2 * PALETTE_MAX_SIZE];
     uint8_t pre_indices[MAX_SB_SQUARE];

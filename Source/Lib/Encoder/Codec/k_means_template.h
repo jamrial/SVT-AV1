@@ -87,7 +87,7 @@ static INLINE int64_t RENAME(calc_total_dist)(const int *data, const int *centro
     return dist;
 }
 
-void RENAME(av1_k_means)(const int *data, int *centroids, uint8_t *indices, int n, int k,
+void RENAME(eb_av1_k_means)(const int *data, int *centroids, uint8_t *indices, int n, int k,
                          int max_itr) {
     int     pre_centroids[2 * PALETTE_MAX_SIZE];
     uint8_t pre_indices[MAX_SB_SQUARE];
