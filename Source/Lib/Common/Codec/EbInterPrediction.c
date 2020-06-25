@@ -2174,7 +2174,7 @@ void combine_interintra(InterIntraMode mode, int8_t use_wedge_interintra, int we
             const uint8_t *mask = av1_get_contiguous_soft_mask(wedge_index, wedge_sign, bsize);
             const int      subw = 2 * mi_size_wide[bsize] == bw;
             const int      subh = 2 * mi_size_high[bsize] == bh;
-            aom_blend_a64_mask(comppred,
+            eb_aom_blend_a64_mask(comppred,
                                compstride,
                                intrapred,
                                intrastride,
@@ -2191,7 +2191,7 @@ void combine_interintra(InterIntraMode mode, int8_t use_wedge_interintra, int we
     } else {
         uint8_t mask[MAX_SB_SQUARE];
         build_smooth_interintra_mask(mask, bw, plane_bsize, mode);
-        aom_blend_a64_mask(comppred,
+        eb_aom_blend_a64_mask(comppred,
                            compstride,
                            intrapred,
                            intrastride,

@@ -24,7 +24,7 @@
 // as described for AOM_BLEND_A64 in aom_dsp/blend.h. src0 or src1 can
 // be the same as dst, or dst can be different from both sources.
 
-// NOTE(david.barker): The input and output of aom_blend_a64_d16_mask_c() are
+// NOTE(david.barker): The input and output of eb_aom_blend_a64_d16_mask_c() are
 // in a higher intermediate precision, and will later be rounded down to pixel
 // precision.
 // Thus, in order to avoid double-rounding, we want to use normal right shifts
@@ -213,7 +213,7 @@ void aom_highbd_blend_a64_d16_mask_c(uint8_t *dst_8, uint32_t dst_stride, const 
 // as described for AOM_BLEND_A64 in aom_dsp/blend.h. src0 or src1 can
 // be the same as dst, or dst can be different from both sources.
 
-void aom_blend_a64_mask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_mask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                           uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                           const uint8_t *mask, uint32_t mask_stride, int w, int h, int subw,
                           int subh) {
@@ -330,7 +330,7 @@ void aom_highbd_blend_a64_mask_c(uint8_t *dst_8, uint32_t dst_stride, const uint
 }
 
 /*Vertical mask related blend functions*/
-void aom_blend_a64_vmask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_vmask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                            uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                            const uint8_t *mask, int w, int h) {
     int i, j;
@@ -381,7 +381,7 @@ void aom_highbd_blend_a64_vmask_c(uint8_t *dst_8, uint32_t dst_stride, const uin
 }
 
 /*Horizontal mask related blend functions*/
-void aom_blend_a64_hmask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_hmask_c(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                            uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                            const uint8_t *mask, int w, int h) {
     int i, j;

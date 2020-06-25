@@ -370,7 +370,7 @@ static void blend_a64_mask_sx_sy_w16n_sse4_1(uint8_t *dst, uint32_t dst_stride, 
 // Dispatch
 //////////////////////////////////////////////////////////////////////////////
 
-void aom_blend_a64_mask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_mask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                                uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                                const uint8_t *mask, uint32_t mask_stride, int w, int h, int subx,
                                int suby) {
@@ -393,7 +393,7 @@ void aom_blend_a64_mask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t 
     assert(IS_POWER_OF_TWO(w));
 
     if (UNLIKELY((h | w) & 3)) { // if (w <= 2 || h <= 2)
-        aom_blend_a64_mask_c(dst,
+        eb_aom_blend_a64_mask_c(dst,
                              dst_stride,
                              src0,
                              src0_stride,
@@ -1026,7 +1026,7 @@ static void blend_a64_vmask_w16n_sse4_1(uint8_t *dst, uint32_t dst_stride, const
 // Dispatch
 //////////////////////////////////////////////////////////////////////////////
 
-void aom_blend_a64_vmask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_vmask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                                 uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                                 const uint8_t *mask, int w, int h) {
     typedef void (*BlendFn)(uint8_t * dst,
@@ -1042,8 +1042,8 @@ void aom_blend_a64_vmask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t
     // Dimension: width_index
     static const BlendFn blend[9] = {
         blend_a64_vmask_w16n_sse4_1, // w % 16 == 0
-        aom_blend_a64_vmask_c, // w == 1
-        aom_blend_a64_vmask_c, // w == 2
+        eb_aom_blend_a64_vmask_c, // w == 1
+        eb_aom_blend_a64_vmask_c, // w == 2
         NULL, // INVALID
         blend_a64_vmask_w4_sse4_1, // w == 4
         NULL, // INVALID
@@ -1199,10 +1199,10 @@ void aom_highbd_blend_a64_vmask_sse4_1(uint8_t *dst_8, uint32_t dst_stride, cons
 // To start out, just dispatch to the function using the 2D mask and
 // pass mask stride as 0. This can be improved upon if necessary.
 
-void aom_blend_a64_hmask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
+void eb_aom_blend_a64_hmask_sse4_1(uint8_t *dst, uint32_t dst_stride, const uint8_t *src0,
                                 uint32_t src0_stride, const uint8_t *src1, uint32_t src1_stride,
                                 const uint8_t *mask, int w, int h) {
-    aom_blend_a64_mask_sse4_1(
+    eb_aom_blend_a64_mask_sse4_1(
         dst, dst_stride, src0, src0_stride, src1, src1_stride, mask, 0, w, h, 0, 0);
 }
 

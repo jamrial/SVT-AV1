@@ -105,7 +105,7 @@ static INLINE void build_obmc_inter_pred_above(
                                        recon_picture_buf->bit_depth);
 
         else
-            aom_blend_a64_vmask(tmp_recon_buf,
+            eb_aom_blend_a64_vmask(tmp_recon_buf,
                                 tmp_recon_stride,
                                 tmp_recon_buf,
                                 tmp_recon_stride,
@@ -176,7 +176,7 @@ static INLINE void build_obmc_inter_pred_left(
                                        bh,
                                        recon_picture_buf->bit_depth);
         else
-            aom_blend_a64_hmask(tmp_recon_buf,
+            eb_aom_blend_a64_hmask(tmp_recon_buf,
                                 tmp_recon_stride,
                                 tmp_recon_buf,
                                 tmp_recon_stride,
