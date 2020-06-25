@@ -70,34 +70,34 @@ void init_fn_ptr(void) {
     OBFP(BLOCK_128X128,
          eb_aom_obmc_sad128x128,
          aom_obmc_variance128x128,
-         aom_obmc_sub_pixel_variance128x128)
+         eb_aom_obmc_sub_pixel_variance128x128)
     OBFP(BLOCK_128X64,
          eb_aom_obmc_sad128x64,
          aom_obmc_variance128x64,
-         aom_obmc_sub_pixel_variance128x64)
+         eb_aom_obmc_sub_pixel_variance128x64)
     OBFP(BLOCK_64X128,
          eb_aom_obmc_sad64x128,
          aom_obmc_variance64x128,
-         aom_obmc_sub_pixel_variance64x128)
-    OBFP(BLOCK_64X64, eb_aom_obmc_sad64x64, aom_obmc_variance64x64, aom_obmc_sub_pixel_variance64x64)
-    OBFP(BLOCK_64X32, eb_aom_obmc_sad64x32, aom_obmc_variance64x32, aom_obmc_sub_pixel_variance64x32)
-    OBFP(BLOCK_32X64, eb_aom_obmc_sad32x64, aom_obmc_variance32x64, aom_obmc_sub_pixel_variance32x64)
-    OBFP(BLOCK_32X32, eb_aom_obmc_sad32x32, aom_obmc_variance32x32, aom_obmc_sub_pixel_variance32x32)
-    OBFP(BLOCK_32X16, eb_aom_obmc_sad32x16, aom_obmc_variance32x16, aom_obmc_sub_pixel_variance32x16)
-    OBFP(BLOCK_16X32, eb_aom_obmc_sad16x32, aom_obmc_variance16x32, aom_obmc_sub_pixel_variance16x32)
-    OBFP(BLOCK_16X16, eb_aom_obmc_sad16x16, aom_obmc_variance16x16, aom_obmc_sub_pixel_variance16x16)
-    OBFP(BLOCK_16X8, eb_aom_obmc_sad16x8, aom_obmc_variance16x8, aom_obmc_sub_pixel_variance16x8)
-    OBFP(BLOCK_8X16, eb_aom_obmc_sad8x16, aom_obmc_variance8x16, aom_obmc_sub_pixel_variance8x16)
-    OBFP(BLOCK_8X8, eb_aom_obmc_sad8x8, aom_obmc_variance8x8, aom_obmc_sub_pixel_variance8x8)
-    OBFP(BLOCK_4X8, eb_aom_obmc_sad4x8, aom_obmc_variance4x8, aom_obmc_sub_pixel_variance4x8)
-    OBFP(BLOCK_8X4, eb_aom_obmc_sad8x4, aom_obmc_variance8x4, aom_obmc_sub_pixel_variance8x4)
-    OBFP(BLOCK_4X4, eb_aom_obmc_sad4x4, aom_obmc_variance4x4, aom_obmc_sub_pixel_variance4x4)
-    OBFP(BLOCK_4X16, eb_aom_obmc_sad4x16, aom_obmc_variance4x16, aom_obmc_sub_pixel_variance4x16)
-    OBFP(BLOCK_16X4, eb_aom_obmc_sad16x4, aom_obmc_variance16x4, aom_obmc_sub_pixel_variance16x4)
-    OBFP(BLOCK_8X32, eb_aom_obmc_sad8x32, aom_obmc_variance8x32, aom_obmc_sub_pixel_variance8x32)
-    OBFP(BLOCK_32X8, eb_aom_obmc_sad32x8, aom_obmc_variance32x8, aom_obmc_sub_pixel_variance32x8)
-    OBFP(BLOCK_16X64, eb_aom_obmc_sad16x64, aom_obmc_variance16x64, aom_obmc_sub_pixel_variance16x64)
-    OBFP(BLOCK_64X16, eb_aom_obmc_sad64x16, aom_obmc_variance64x16, aom_obmc_sub_pixel_variance64x16)
+         eb_aom_obmc_sub_pixel_variance64x128)
+    OBFP(BLOCK_64X64, eb_aom_obmc_sad64x64, aom_obmc_variance64x64, eb_aom_obmc_sub_pixel_variance64x64)
+    OBFP(BLOCK_64X32, eb_aom_obmc_sad64x32, aom_obmc_variance64x32, eb_aom_obmc_sub_pixel_variance64x32)
+    OBFP(BLOCK_32X64, eb_aom_obmc_sad32x64, aom_obmc_variance32x64, eb_aom_obmc_sub_pixel_variance32x64)
+    OBFP(BLOCK_32X32, eb_aom_obmc_sad32x32, aom_obmc_variance32x32, eb_aom_obmc_sub_pixel_variance32x32)
+    OBFP(BLOCK_32X16, eb_aom_obmc_sad32x16, aom_obmc_variance32x16, eb_aom_obmc_sub_pixel_variance32x16)
+    OBFP(BLOCK_16X32, eb_aom_obmc_sad16x32, aom_obmc_variance16x32, eb_aom_obmc_sub_pixel_variance16x32)
+    OBFP(BLOCK_16X16, eb_aom_obmc_sad16x16, aom_obmc_variance16x16, eb_aom_obmc_sub_pixel_variance16x16)
+    OBFP(BLOCK_16X8, eb_aom_obmc_sad16x8, aom_obmc_variance16x8, eb_aom_obmc_sub_pixel_variance16x8)
+    OBFP(BLOCK_8X16, eb_aom_obmc_sad8x16, aom_obmc_variance8x16, eb_aom_obmc_sub_pixel_variance8x16)
+    OBFP(BLOCK_8X8, eb_aom_obmc_sad8x8, aom_obmc_variance8x8, eb_aom_obmc_sub_pixel_variance8x8)
+    OBFP(BLOCK_4X8, eb_aom_obmc_sad4x8, aom_obmc_variance4x8, eb_aom_obmc_sub_pixel_variance4x8)
+    OBFP(BLOCK_8X4, eb_aom_obmc_sad8x4, aom_obmc_variance8x4, eb_aom_obmc_sub_pixel_variance8x4)
+    OBFP(BLOCK_4X4, eb_aom_obmc_sad4x4, aom_obmc_variance4x4, eb_aom_obmc_sub_pixel_variance4x4)
+    OBFP(BLOCK_4X16, eb_aom_obmc_sad4x16, aom_obmc_variance4x16, eb_aom_obmc_sub_pixel_variance4x16)
+    OBFP(BLOCK_16X4, eb_aom_obmc_sad16x4, aom_obmc_variance16x4, eb_aom_obmc_sub_pixel_variance16x4)
+    OBFP(BLOCK_8X32, eb_aom_obmc_sad8x32, aom_obmc_variance8x32, eb_aom_obmc_sub_pixel_variance8x32)
+    OBFP(BLOCK_32X8, eb_aom_obmc_sad32x8, aom_obmc_variance32x8, eb_aom_obmc_sub_pixel_variance32x8)
+    OBFP(BLOCK_16X64, eb_aom_obmc_sad16x64, aom_obmc_variance16x64, eb_aom_obmc_sub_pixel_variance16x64)
+    OBFP(BLOCK_64X16, eb_aom_obmc_sad64x16, aom_obmc_variance64x16, eb_aom_obmc_sub_pixel_variance64x16)
 }
 
 // #define NEW_DIAMOND_SEARCH

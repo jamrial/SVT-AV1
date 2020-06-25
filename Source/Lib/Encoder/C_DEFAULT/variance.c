@@ -301,7 +301,7 @@ static INLINE void obmc_variance(const uint8_t *pre, int pre_stride, const int32
     }
 
 #define OBMC_SUBPIX_VAR(W, H)                                                        \
-    unsigned int aom_obmc_sub_pixel_variance##W##x##H##_c(const uint8_t *pre,        \
+    unsigned int eb_aom_obmc_sub_pixel_variance##W##x##H##_c(const uint8_t *pre,        \
                                                           int            pre_stride, \
                                                           int            xoffset,    \
                                                           int            yoffset,    \
