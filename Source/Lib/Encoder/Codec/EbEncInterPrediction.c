@@ -2624,7 +2624,7 @@ static void chroma_plane_warped_motion_prediction_sub8x8(
         src_ptr_l1 = src_ptr_l1 + (is16bit ? 2 : 1) * ((mv_q4.row >> SUBPEL_BITS) * src_stride +
                                                        (mv_q4.col >> SUBPEL_BITS));
 
-        av1_dist_wtd_comp_weight_assign(
+        eb_av1_dist_wtd_comp_weight_assign(
                 &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                 picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                 picture_control_set_ptr->parent_pcs_ptr->ref_order_hint[rf[0] - 1], // bck_frame_index,
@@ -2708,7 +2708,7 @@ static void plane_warped_motion_prediction(
 
         ConvolveParams conv_params =
                 get_conv_params_no_round(0, 0, 0, tmp_dstY, 128, is_compound, bit_depth);
-        av1_dist_wtd_comp_weight_assign(
+        eb_av1_dist_wtd_comp_weight_assign(
                 &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                 picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                 picture_control_set_ptr->parent_pcs_ptr->ref_order_hint[rf[0] - 1], // bck_frame_index,
@@ -4604,7 +4604,7 @@ EbErrorType av1_inter_prediction(
         DECLARE_ALIGNED(16, uint8_t, seg_mask[2 * MAX_SB_SQUARE]);
 
         //the luma data is applied to chroma below
-        av1_dist_wtd_comp_weight_assign(
+        eb_av1_dist_wtd_comp_weight_assign(
                 &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                 picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                 picture_control_set_ptr->parent_pcs_ptr->ref_order_hint[rf[0] - 1], // bck_frame_index,
@@ -4707,7 +4707,7 @@ EbErrorType av1_inter_prediction(
             conv_params = get_conv_params_no_round(0, (mv_unit->pred_direction == BI_PRED) ? 1 : 0, 0,
                                                    tmp_dstCb, 64, is_compound, bit_depth);
 
-            av1_dist_wtd_comp_weight_assign(
+            eb_av1_dist_wtd_comp_weight_assign(
                     &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                     picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                     picture_control_set_ptr->parent_pcs_ptr
@@ -4806,7 +4806,7 @@ EbErrorType av1_inter_prediction(
 
             conv_params = get_conv_params_no_round(0, (mv_unit->pred_direction == BI_PRED) ? 1 : 0, 0,
                                                    tmp_dstCr, 64, is_compound, bit_depth);
-            av1_dist_wtd_comp_weight_assign(
+            eb_av1_dist_wtd_comp_weight_assign(
                     &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                     picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                     picture_control_set_ptr->parent_pcs_ptr
@@ -5614,7 +5614,7 @@ EbErrorType av1_inter_prediction_16bit_pipeline(
         DECLARE_ALIGNED(16, uint8_t, seg_mask[2 * MAX_SB_SQUARE]);
 
         //the luma data is applied to chroma below
-        av1_dist_wtd_comp_weight_assign(
+        eb_av1_dist_wtd_comp_weight_assign(
             &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
             picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
             picture_control_set_ptr->parent_pcs_ptr->ref_order_hint[rf[0] - 1], // bck_frame_index,
@@ -5692,7 +5692,7 @@ EbErrorType av1_inter_prediction_16bit_pipeline(
                 is_compound,
                 bit_depth);
 
-            av1_dist_wtd_comp_weight_assign(
+            eb_av1_dist_wtd_comp_weight_assign(
                 &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                 picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                 picture_control_set_ptr->parent_pcs_ptr
@@ -5776,7 +5776,7 @@ EbErrorType av1_inter_prediction_16bit_pipeline(
                 64,
                 is_compound,
                 bit_depth);
-            av1_dist_wtd_comp_weight_assign(
+            eb_av1_dist_wtd_comp_weight_assign(
                 &picture_control_set_ptr->parent_pcs_ptr->scs_ptr->seq_header,
                 picture_control_set_ptr->parent_pcs_ptr->cur_order_hint, // cur_frame_index,
                 picture_control_set_ptr->parent_pcs_ptr

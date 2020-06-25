@@ -310,7 +310,7 @@ static const int quant_dist_lookup_table[2][4][2] = {
     {{7, 9}, {5, 11}, {4, 12}, {3, 13}},
 };
 
-void av1_dist_wtd_comp_weight_assign(SeqHeader *seq_header, int cur_frame_index,
+void eb_av1_dist_wtd_comp_weight_assign(SeqHeader *seq_header, int cur_frame_index,
                                      int bck_frame_index, int fwd_frame_index, int compound_idx,
                                      int order_idx, int *fwd_offset, int *bck_offset,
                                      int *use_dist_wtd_comp_avg, int is_compound) {

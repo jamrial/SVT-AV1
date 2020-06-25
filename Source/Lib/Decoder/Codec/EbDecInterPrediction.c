@@ -846,7 +846,7 @@ void svtav1_predict_inter_block_plane(DecModCtxt *dec_mod_ctx, EbDecHandle *dec_
         if (fwd_buf != NULL) fwd_frame_index = fwd_buf->order_hint;
 
         /*Distantance WTD compound inter prediction */
-        av1_dist_wtd_comp_weight_assign(seq_header,
+        eb_av1_dist_wtd_comp_weight_assign(seq_header,
                                         cur_frame_index,
                                         bck_frame_index,
                                         fwd_frame_index,

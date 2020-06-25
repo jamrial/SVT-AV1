@@ -120,7 +120,7 @@ typedef struct WedgeParamsType
         InterpFilters interp_filters, int32_t is_intrabc, int32_t bd);
 
 
-    void av1_dist_wtd_comp_weight_assign(
+    void eb_av1_dist_wtd_comp_weight_assign(
         SeqHeader *seq_header,
         int cur_frame_index,
         int bck_frame_index,
