@@ -461,7 +461,7 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
                 eb_av1_txb_init_levels = eb_av1_txb_init_levels_avx512;
             }
 #endif // !NON_AVX512_SUPPORT
-                if (flags & HAS_AVX2) aom_upsampled_pred = aom_upsampled_pred_sse2;
+                if (flags & HAS_AVX2) aom_upsampled_pred = eb_aom_upsampled_pred_sse2;
                 if (flags & HAS_AVX2) eb_aom_obmc_sad128x128 = eb_aom_obmc_sad128x128_avx2;
                 if (flags & HAS_AVX2) eb_aom_obmc_sad128x64 = eb_aom_obmc_sad128x64_avx2;
                 if (flags & HAS_AVX2) eb_aom_obmc_sad16x16 = eb_aom_obmc_sad16x16_avx2;

@@ -261,7 +261,7 @@ static INLINE const InterpFilterParams *av1_get_filter(int subpel_search) {
     }
 }
 
-void aom_upsampled_pred_sse2(MacroBlockD *xd, const struct AV1Common *const cm, int mi_row,
+void eb_aom_upsampled_pred_sse2(MacroBlockD *xd, const struct AV1Common *const cm, int mi_row,
                              int mi_col, const MV *const mv, uint8_t *comp_pred, int width,
                              int height, int subpel_x_q3, int subpel_y_q3, const uint8_t *ref,
                              int ref_stride, int subpel_search) {
