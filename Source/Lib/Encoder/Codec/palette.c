@@ -594,7 +594,7 @@ void eb_av1_tokenize_color_map(FRAME_CONTEXT *frame_context, BlkStruct *blk_ptr,
                               : frame_context->palette_y_color_index_cdf;
     cost_and_tokenize_map(&color_map_params, t, plane, 0, allow_update_cdf, map_pb_cdf);
 }
-int av1_cost_color_map(PaletteInfo *palette_info, MdRateEstimationContext *rate_table,
+int eb_av1_cost_color_map(PaletteInfo *palette_info, MdRateEstimationContext *rate_table,
                        BlkStruct *blk_ptr, int plane, BlockSize bsize, COLOR_MAP_TYPE type) {
     assert(plane == 0 || plane == 1);
     Av1ColorMapParam color_map_params;
