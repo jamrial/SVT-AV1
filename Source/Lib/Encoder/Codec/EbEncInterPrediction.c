@@ -504,7 +504,7 @@ static void pick_wedge(PictureControlSet *picture_control_set_ptr, ModeDecisionC
         wedge_sign = eb_av1_wedge_sign_from_residuals(ds, mask, N, sign_limit);
 
         mask = av1_get_contiguous_soft_mask(wedge_index, wedge_sign, bsize);
-        sse  = av1_wedge_sse_from_residuals(residual1, diff10, mask, N);
+        sse  = eb_av1_wedge_sse_from_residuals(residual1, diff10, mask, N);
         sse  = ROUND_POWER_OF_TWO(sse, bd_round);
 
         model_rd_with_curvfit(
@@ -635,7 +635,7 @@ int64_t pick_wedge_fixed_sign(ModeDecisionCandidate *candidate_ptr,
     const int bd_round = 0;
     for (wedge_index = 0; wedge_index < wedge_types; ++wedge_index) {
         mask = av1_get_contiguous_soft_mask(wedge_index, wedge_sign, bsize);
-        sse  = av1_wedge_sse_from_residuals(residual1, diff10, mask, N);
+        sse  = eb_av1_wedge_sse_from_residuals(residual1, diff10, mask, N);
         sse  = ROUND_POWER_OF_TWO(sse, bd_round);
         model_rd_with_curvfit(
                 picture_control_set_ptr, bsize, sse, N, &rate, &dist, context_ptr, full_lambda);
@@ -722,7 +722,7 @@ static void pick_interinter_seg(PictureControlSet *     picture_control_set_ptr,
             eb_av1_build_compound_diffwtd_mask(
                     tmp_mask[cur_mask_type], cur_mask_type, p0, bw, p1, bw, bh, bw);
         // compute rd for mask
-        uint64_t sse = av1_wedge_sse_from_residuals(residual1, diff10, tmp_mask[cur_mask_type], N);
+        uint64_t sse = eb_av1_wedge_sse_from_residuals(residual1, diff10, tmp_mask[cur_mask_type], N);
 
         sse = ROUND_POWER_OF_TWO(sse, bd_round);
 
