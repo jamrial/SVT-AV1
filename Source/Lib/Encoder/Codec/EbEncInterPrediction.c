@@ -101,7 +101,7 @@ static void av1_make_masked_inter_predictor(uint8_t *src_ptr, uint32_t src_strid
     if (!plane && comp_data->type == COMPOUND_DIFFWTD) {
         //CHKN  for DIFF: need to compute the mask  comp_data->seg_mask is the output computed from the two preds org_dst and tmp_buf16
         //for WEDGE the mask is fixed from the table based on wedge_sign/index
-        av1_build_compound_diffwtd_mask_d16(seg_mask,
+        eb_av1_build_compound_diffwtd_mask_d16(seg_mask,
                                             comp_data->mask_type,
                                             org_dst,
                                             org_dst_stride,
@@ -186,7 +186,7 @@ void av1_make_masked_scaled_inter_predictor(uint8_t *src_ptr, uint32_t src_strid
     if (!plane && comp_data->type == COMPOUND_DIFFWTD) {
         //CHKN  for DIFF: need to compute the mask  comp_data->seg_mask is the output computed from the two preds org_dst and tmp_buf16
         //for WEDGE the mask is fixed from the table based on wedge_sign/index
-        av1_build_compound_diffwtd_mask_d16(seg_mask,
+        eb_av1_build_compound_diffwtd_mask_d16(seg_mask,
                                             comp_data->mask_type,
                                             org_dst,
                                             org_dst_stride,
@@ -716,7 +716,7 @@ static void pick_interinter_seg(PictureControlSet *     picture_control_set_ptr,
     for (cur_mask_type = 0; cur_mask_type < DIFFWTD_MASK_TYPES; cur_mask_type++) {
         // build mask and inverse
         if (hbd_mode_decision)
-            av1_build_compound_diffwtd_mask_highbd(
+            eb_av1_build_compound_diffwtd_mask_highbd(
                     tmp_mask[cur_mask_type], cur_mask_type, p0, bw, p1, bw, bh, bw, EB_10BIT);
         else
             av1_build_compound_diffwtd_mask(
@@ -2329,7 +2329,7 @@ void av1_make_masked_warp_inter_predictor(uint8_t *src_ptr, uint32_t src_stride,
     if (!plane && comp_data->type == COMPOUND_DIFFWTD) {
         //CHKN  for DIFF: need to compute the mask  comp_data->seg_mask is the output computed from the two preds org_dst and tmp_buf16
         //for WEDGE the mask is fixed from the table based on wedge_sign/index
-        av1_build_compound_diffwtd_mask_d16(seg_mask,
+        eb_av1_build_compound_diffwtd_mask_d16(seg_mask,
                                             comp_data->mask_type,
                                             org_dst,
                                             org_dst_stride,

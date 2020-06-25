@@ -617,7 +617,7 @@ void svt_make_masked_inter_predictor(PartitionInfo *part_info, int32_t ref, void
         //CHKN  for DIFF: need to compute the mask  comp_data->seg_mask is
         //the output computed from the two preds org_dst and tmp_buf16
         //for WEDGE the mask is fixed from the table based on wedge_sign/index
-        av1_build_compound_diffwtd_mask_d16(seg_mask,
+        eb_av1_build_compound_diffwtd_mask_d16(seg_mask,
                                             comp_data->mask_type,
                                             org_dst,
                                             org_dst_stride,

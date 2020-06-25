@@ -1306,12 +1306,12 @@ static INLINE __m256i calc_mask_avx2(const __m256i mask_base, const __m256i s0, 
     return _mm256_abs_epi16(_mm256_add_epi16(mask_base, _mm256_srli_epi16(diff, 4)));
     // clamp(diff, 0, 64) can be skiped for diff is always in the range ( 38, 54)
 }
-void av1_build_compound_diffwtd_mask_highbd_avx2(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
+void eb_av1_build_compound_diffwtd_mask_highbd_avx2(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
                                                  const uint8_t *src0, int src0_stride,
                                                  const uint8_t *src1, int src1_stride, int h, int w,
                                                  int bd) {
     if (w < 16) {
-        av1_build_compound_diffwtd_mask_highbd_ssse3(
+        eb_av1_build_compound_diffwtd_mask_highbd_ssse3(
             mask, mask_type, src0, src0_stride, src1, src1_stride, h, w, bd);
     } else {
         assert(mask_type == DIFFWTD_38 || mask_type == DIFFWTD_38_INV);
@@ -1410,7 +1410,7 @@ void av1_build_compound_diffwtd_mask_highbd_avx2(uint8_t *mask, DIFFWTD_MASK_TYP
     }
 }
 
-void av1_build_compound_diffwtd_mask_avx2(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
+void eb_av1_build_compound_diffwtd_mask_avx2(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
                                           const uint8_t *src0, int src0_stride, const uint8_t *src1,
                                           int src1_stride, int h, int w) {
     const int     mb          = (mask_type == DIFFWTD_38_INV) ? AOM_BLEND_A64_MAX_ALPHA : 0;

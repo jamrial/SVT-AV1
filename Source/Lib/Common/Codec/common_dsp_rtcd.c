@@ -243,7 +243,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
 
     eb_av1_upsample_intra_edge = eb_av1_upsample_intra_edge_c;
 
-    av1_build_compound_diffwtd_mask_d16 = av1_build_compound_diffwtd_mask_d16_c;
+    eb_av1_build_compound_diffwtd_mask_d16 = eb_av1_build_compound_diffwtd_mask_d16_c;
 
     eb_av1_highbd_wiener_convolve_add_src = eb_av1_highbd_wiener_convolve_add_src_c;
 
@@ -332,8 +332,8 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
     aom_convolve8_vert = aom_convolve8_vert_c;
 
 
-    av1_build_compound_diffwtd_mask = av1_build_compound_diffwtd_mask_c;
-    av1_build_compound_diffwtd_mask_highbd = av1_build_compound_diffwtd_mask_highbd_c;
+    av1_build_compound_diffwtd_mask = eb_av1_build_compound_diffwtd_mask_c;
+    eb_av1_build_compound_diffwtd_mask_highbd = eb_av1_build_compound_diffwtd_mask_highbd_c;
     av1_wedge_sse_from_residuals = av1_wedge_sse_from_residuals_c;
 
     aom_subtract_block = aom_subtract_block_c;
@@ -808,7 +808,7 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
     if (flags & HAS_SSE4_1) eb_av1_filter_intra_edge_high = eb_av1_filter_intra_edge_high_sse4_1;
     if (flags & HAS_SSE4_1) eb_av1_filter_intra_edge = eb_av1_filter_intra_edge_sse4_1;
     if (flags & HAS_SSE4_1) eb_av1_upsample_intra_edge = eb_av1_upsample_intra_edge_sse4_1;
-    if (flags & HAS_AVX2) av1_build_compound_diffwtd_mask_d16 = av1_build_compound_diffwtd_mask_d16_avx2;
+    if (flags & HAS_AVX2) eb_av1_build_compound_diffwtd_mask_d16 = eb_av1_build_compound_diffwtd_mask_d16_avx2;
     if (flags & HAS_AVX2) eb_av1_highbd_wiener_convolve_add_src = eb_av1_highbd_wiener_convolve_add_src_avx2;
     if (flags & HAS_AVX2) eb_apply_selfguided_restoration = eb_apply_selfguided_restoration_avx2;
     if (flags & HAS_AVX2) eb_av1_selfguided_restoration = eb_av1_selfguided_restoration_avx2;
@@ -939,8 +939,8 @@ void setup_common_rtcd_internal(CPU_FLAGS flags) {
 
         if (flags & HAS_AVX2) aom_convolve8_horiz = aom_convolve8_horiz_avx2;
         if (flags & HAS_AVX2) aom_convolve8_vert = aom_convolve8_vert_avx2;
-        if (flags & HAS_AVX2) av1_build_compound_diffwtd_mask = av1_build_compound_diffwtd_mask_avx2;
-        if (flags & HAS_AVX2) av1_build_compound_diffwtd_mask_highbd = av1_build_compound_diffwtd_mask_highbd_avx2;
+        if (flags & HAS_AVX2) av1_build_compound_diffwtd_mask = eb_av1_build_compound_diffwtd_mask_avx2;
+        if (flags & HAS_AVX2) eb_av1_build_compound_diffwtd_mask_highbd = eb_av1_build_compound_diffwtd_mask_highbd_avx2;
         if (flags & HAS_AVX2) av1_wedge_sse_from_residuals = av1_wedge_sse_from_residuals_avx2;
         if (flags & HAS_AVX2) aom_subtract_block = aom_subtract_block_avx2;
         if (flags & HAS_AVX2) aom_lowbd_blend_a64_d16_mask = aom_lowbd_blend_a64_d16_mask_avx2;

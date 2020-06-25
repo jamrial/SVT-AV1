@@ -149,7 +149,7 @@ static AOM_FORCE_INLINE void diffwtd_mask_highbd(uint8_t *mask, int which_invers
         }
     }
 }
-void av1_build_compound_diffwtd_mask_highbd_c(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
+void eb_av1_build_compound_diffwtd_mask_highbd_c(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
                                               const uint8_t *src0, int src0_stride,
                                               const uint8_t *src1, int src1_stride, int h, int w,
                                               int bd) {
@@ -166,7 +166,7 @@ void av1_build_compound_diffwtd_mask_highbd_c(uint8_t *mask, DIFFWTD_MASK_TYPE m
     }
 }
 
-void av1_build_compound_diffwtd_mask_c(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
+void eb_av1_build_compound_diffwtd_mask_c(uint8_t *mask, DIFFWTD_MASK_TYPE mask_type,
                                        const uint8_t *src0, int src0_stride, const uint8_t *src1,
                                        int src1_stride, int h, int w) {
     switch (mask_type) {
