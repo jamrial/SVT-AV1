@@ -221,7 +221,7 @@ MV32 eb_av1_scale_mv(const MV *mvq4, int x, int y, const ScaleFactors *sf) {
     return res;
 }
 
-void av1_setup_scale_factors_for_frame(ScaleFactors *sf, int other_w, int other_h, int this_w,
+void eb_av1_setup_scale_factors_for_frame(ScaleFactors *sf, int other_w, int other_h, int this_w,
                                        int this_h) {
     if (!valid_ref_frame_size(other_w, other_h, this_w, this_h)) {
         sf->x_scale_fp = REF_INVALID_SCALE;

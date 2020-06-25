@@ -162,7 +162,7 @@ typedef struct WedgeParamsType
         int interstride, const uint8_t *intrapred8, int intrastride, int bd);
 
 
-    void av1_setup_scale_factors_for_frame(ScaleFactors *sf, int other_w,
+    void eb_av1_setup_scale_factors_for_frame(ScaleFactors *sf, int other_w,
         int other_h, int this_w, int this_h);
 
     static INLINE int av1_is_valid_scale(const struct ScaleFactors *sf) {

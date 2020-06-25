@@ -4138,7 +4138,7 @@ EbErrorType av1_inter_prediction(
 
         //=============================================
     ScaleFactors sf_identity;
-    av1_setup_scale_factors_for_frame(&sf_identity,
+    eb_av1_setup_scale_factors_for_frame(&sf_identity,
                                       200,
                                       200,
                                       200,
@@ -4146,7 +4146,7 @@ EbErrorType av1_inter_prediction(
 
     ScaleFactors ref0_scale_factors;
     if(ref_pic_list0 != NULL && picture_control_set_ptr!=NULL){
-        av1_setup_scale_factors_for_frame(&ref0_scale_factors,
+        eb_av1_setup_scale_factors_for_frame(&ref0_scale_factors,
                                           ref_pic_list0->width,
                                           ref_pic_list0->height,
                                           picture_control_set_ptr->parent_pcs_ptr->enhanced_picture_ptr->width,
@@ -4155,7 +4155,7 @@ EbErrorType av1_inter_prediction(
 
     ScaleFactors ref1_scale_factors;
     if(ref_pic_list1 != NULL && picture_control_set_ptr != NULL){
-        av1_setup_scale_factors_for_frame(&ref1_scale_factors,
+        eb_av1_setup_scale_factors_for_frame(&ref1_scale_factors,
                                           ref_pic_list1->width,
                                           ref_pic_list1->height,
                                           picture_control_set_ptr->parent_pcs_ptr->enhanced_picture_ptr->width,
@@ -4186,7 +4186,7 @@ EbErrorType av1_inter_prediction(
                 EbPictureBufferDesc *ref_pic_ptr = is16bit ? reference_object->reference_picture16bit
                                                            : reference_object->reference_picture;
 
-                av1_setup_scale_factors_for_frame(&(scale_factors[list_idx][ref_idx]),
+                eb_av1_setup_scale_factors_for_frame(&(scale_factors[list_idx][ref_idx]),
                                                   ref_pic_ptr->width,
                                                   ref_pic_ptr->height,
                                                   picture_control_set_ptr->parent_pcs_ptr->enhanced_picture_ptr->width,
