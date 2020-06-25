@@ -719,7 +719,7 @@ static void pick_interinter_seg(PictureControlSet *     picture_control_set_ptr,
             eb_av1_build_compound_diffwtd_mask_highbd(
                     tmp_mask[cur_mask_type], cur_mask_type, p0, bw, p1, bw, bh, bw, EB_10BIT);
         else
-            av1_build_compound_diffwtd_mask(
+            eb_av1_build_compound_diffwtd_mask(
                     tmp_mask[cur_mask_type], cur_mask_type, p0, bw, p1, bw, bh, bw);
         // compute rd for mask
         uint64_t sse = av1_wedge_sse_from_residuals(residual1, diff10, tmp_mask[cur_mask_type], N);
