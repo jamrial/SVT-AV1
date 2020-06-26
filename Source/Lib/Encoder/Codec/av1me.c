@@ -854,7 +854,7 @@ static int upsampled_obmc_pref_error(MacroBlockD *xd, const AV1_COMMON *const cm
                                   subpel_search);
         besterr = vfp->ovf(pred8, w, wsrc, mask, sse);
     } else {
-        aom_upsampled_pred(xd,
+        eb_aom_upsampled_pred(xd,
                            cm,
                            mi_row,
                            mi_col,
@@ -871,7 +871,7 @@ static int upsampled_obmc_pref_error(MacroBlockD *xd, const AV1_COMMON *const cm
         besterr = vfp->ovf(pred, w, wsrc, mask, sse);
     }
 #else
-    aom_upsampled_pred(xd,
+    eb_aom_upsampled_pred(xd,
                        (const struct AV1Common *const)cm,
                        mi_row,
                        mi_col,
