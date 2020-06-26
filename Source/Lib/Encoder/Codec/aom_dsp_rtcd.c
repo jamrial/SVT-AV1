@@ -589,15 +589,15 @@ void setup_rtcd_internal(CPU_FLAGS flags) {
                 if (flags & HAS_AVX2) eb_av1_fwd_txfm2d_16x32 = eb_av1_fwd_txfm2d_16x32_avx2;
 #ifndef NON_AVX512_SUPPORT
                 if (flags & HAS_AVX512F) {
-                    eb_av1_fwd_txfm2d_64x64 = av1_fwd_txfm2d_64x64_avx512;
-                    eb_av1_fwd_txfm2d_32x32 = av1_fwd_txfm2d_32x32_avx512;
-                    eb_av1_fwd_txfm2d_16x16 = av1_fwd_txfm2d_16x16_avx512;
-                    eb_av1_fwd_txfm2d_32x64 = av1_fwd_txfm2d_32x64_avx512;
-                    eb_av1_fwd_txfm2d_64x32 = av1_fwd_txfm2d_64x32_avx512;
-                    eb_av1_fwd_txfm2d_16x64 = av1_fwd_txfm2d_16x64_avx512;
-                    eb_av1_fwd_txfm2d_64x16 = av1_fwd_txfm2d_64x16_avx512;
-                    eb_av1_fwd_txfm2d_32x16 = av1_fwd_txfm2d_32x16_avx512;
-                    eb_av1_fwd_txfm2d_16x32 = av1_fwd_txfm2d_16x32_avx512;
+                    eb_av1_fwd_txfm2d_64x64 = eb_av1_fwd_txfm2d_64x64_avx512;
+                    eb_av1_fwd_txfm2d_32x32 = eb_av1_fwd_txfm2d_32x32_avx512;
+                    eb_av1_fwd_txfm2d_16x16 = eb_av1_fwd_txfm2d_16x16_avx512;
+                    eb_av1_fwd_txfm2d_32x64 = eb_av1_fwd_txfm2d_32x64_avx512;
+                    eb_av1_fwd_txfm2d_64x32 = eb_av1_fwd_txfm2d_64x32_avx512;
+                    eb_av1_fwd_txfm2d_16x64 = eb_av1_fwd_txfm2d_16x64_avx512;
+                    eb_av1_fwd_txfm2d_64x16 = eb_av1_fwd_txfm2d_64x16_avx512;
+                    eb_av1_fwd_txfm2d_32x16 = eb_av1_fwd_txfm2d_32x16_avx512;
+                    eb_av1_fwd_txfm2d_16x32 = eb_av1_fwd_txfm2d_16x32_avx512;
                 }
 #endif
                     if (flags & HAS_AVX2) eb_av1_fwd_txfm2d_8x8 = eb_av1_fwd_txfm2d_8x8_avx2;

@@ -818,7 +818,7 @@ static void fdct16x16_avx512(const __m512i *in, __m512i *out, const int8_t bit,
     }
 }
 
-void av1_fwd_txfm2d_16x16_avx512(int16_t *input, int32_t *coeff, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_16x16_avx512(int16_t *input, int32_t *coeff, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     __m512i       in[16], out[16];
     const int8_t *shift   = fwd_txfm_shift_ls[TX_16X16];
@@ -1441,7 +1441,7 @@ static INLINE void fwd_txfm2d_32x32_avx512(const int16_t *input, int32_t *output
     transpose_16nx16n_avx512(txfm_size, buf_512, out_512);
 }
 
-void av1_fwd_txfm2d_32x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_32x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     DECLARE_ALIGNED(64, int32_t, txfm_buf[1024]);
     Txfm2dFlipCfg cfg;
@@ -2295,7 +2295,7 @@ static INLINE void fdct64x64_avx512(const __m512i *input, __m512i *output, const
     av1_fdct64_new_avx512(input, output, cos_bit, txfm_size, col_num);
 }
 
-void av1_fwd_txfm2d_64x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_64x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     (void)bd;
     __m512i       in[256];
@@ -2554,7 +2554,7 @@ static INLINE void av1_round_shift_rect_array_32_avx512(__m512i *input, __m512i 
     }
 }
 
-void av1_fwd_txfm2d_32x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_32x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     (void)tx_type;
     __m512i       in[128];
@@ -2583,7 +2583,7 @@ void av1_fwd_txfm2d_32x64_avx512(int16_t *input, int32_t *output, uint32_t strid
     (void)bd;
 }
 
-void av1_fwd_txfm2d_64x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_64x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     (void)tx_type;
     __m512i       in[128];
@@ -2616,7 +2616,7 @@ void av1_fwd_txfm2d_64x32_avx512(int16_t *input, int32_t *output, uint32_t strid
     (void)bd;
 }
 
-void av1_fwd_txfm2d_16x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_16x64_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     __m512i       in[64];
     __m512i *     outcoeff512   = (__m512i *)output;
@@ -2649,7 +2649,7 @@ void av1_fwd_txfm2d_16x64_avx512(int16_t *input, int32_t *output, uint32_t strid
     (void)tx_type;
 }
 
-void av1_fwd_txfm2d_64x16_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_64x16_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     __m512i       in[64];
     __m512i *     outcoeff512   = (__m512i *)output;
@@ -2727,7 +2727,7 @@ static const fwd_transform_1d_avx512 row_fwdtxfm_16x32_arr[TX_TYPES] = {
 };
 
 /* call this function only for DCT_DCT, IDTX */
-void av1_fwd_txfm2d_16x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_16x32_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     __m512i                       in[32];
     __m512i *                     outcoef512    = (__m512i *)output;
@@ -2760,7 +2760,7 @@ void av1_fwd_txfm2d_16x32_avx512(int16_t *input, int32_t *output, uint32_t strid
 }
 
 /* call this function only for DCT_DCT, IDTX */
-void av1_fwd_txfm2d_32x16_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
+void eb_av1_fwd_txfm2d_32x16_avx512(int16_t *input, int32_t *output, uint32_t stride, TxType tx_type,
                                  uint8_t bd) {
     __m512i                       in[32];
     __m512i *                     outcoef512    = (__m512i *)output;

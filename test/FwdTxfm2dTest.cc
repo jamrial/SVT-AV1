@@ -8,7 +8,7 @@
  *
  * @brief Unit test for forward 2d transform functions:
  * - Av1TransformTwoD_{4x4, 8x8, 16x16, 32x32, 64x64}
- * - av1_fwd_txfm2d_{rectangle}
+ * - eb_av1_fwd_txfm2d_{rectangle}
  *
  * @author Cidana-Edmond, Cidana-Wenyao
  *
@@ -45,7 +45,7 @@ using FwdTxfm2dParam = std::tuple<TxSize, TxType, int>;
 /**
  * @brief Unit test for forward 2d tx functions:
  * - Av1TransformTwoD_{4x4, 8x8, 16x16, 32x32, 64x64}
- * - av1_fwd_txfm2d_{rectangle}
+ * - eb_av1_fwd_txfm2d_{rectangle}
  *
  * Test strategy:
  * Verify these tx function by comparing with reference implementation.
