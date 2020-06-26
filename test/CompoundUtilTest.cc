@@ -10,9 +10,8 @@
  * - eb_av1_build_compound_diffwtd_mask_{, d16}avx2
  * - eb_aom_blend_a64_mask_avx2/eb_aom_lowbd_blend_a64_d16_mask_avx2
  * - eb_aom_blend_a64_mask_sse4_1
- * - aom_highbd_blend_a64_mask_sse4_1/aom_highbd_blend_a64_d16_mask_avx2
+ * - eb_aom_highbd_blend_a64_mask_sse4_1/eb_aom_highbd_blend_a64_d16_mask_avx2
  * - eb_aom_blend_a64_hmask_sse4_1/eb_aom_blend_a64_vmask_sse4_1
- * - aom_highbd_blend_a64_hmask_sse4_1/aom_highbd_blend_a64_vmask_sse4_1
  * - eb_aom_highbd_blend_a64_hmask_sse4_1/eb_aom_highbd_blend_a64_vmask_sse4_1
  * - eb_aom_sse_avx2/eb_aom_highbd_sse_avx2
  *
@@ -361,16 +360,16 @@ INSTANTIATE_TEST_CASE_P(BLEND, LbdCompBlendVMaskTest,
                             eb_aom_blend_a64_vmask_c, eb_aom_blend_a64_vmask_sse4_1,
                             "eb_aom_blend_a64_vmask_sse4_1")}));
 
-using HbdBlendA64MaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
+using EbHbdBlendA64MaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
                                      uint32_t, const uint8_t *, uint32_t,
                                      const uint8_t *, uint32_t, int, int, int,
                                      int, int);
 
-class HbdCompBlendTest
-    : public CompBlendTest<uint16_t, uint16_t, HbdBlendA64MaskFunc,
-                           MAKE_PARAM(HbdBlendA64MaskFunc)> {
+class EbHbdCompBlendTest
+    : public CompBlendTest<uint16_t, uint16_t, EbHbdBlendA64MaskFunc,
+                           MAKE_PARAM(EbHbdBlendA64MaskFunc)> {
   public:
-    HbdCompBlendTest() {
+    EbHbdCompBlendTest() {
         bd_ = 8;
         func_ref_ = TEST_GET_PARAM(0);
         func_tst_ = TEST_GET_PARAM(1);
@@ -412,29 +411,29 @@ class HbdCompBlendTest
     }
 };
 
-TEST_P(HbdCompBlendTest, BlendA64Mask) {
+TEST_P(EbHbdCompBlendTest, BlendA64Mask) {
     run_hbd_test(8);
     run_hbd_test(10);
     run_hbd_test(12);
 }
 
 INSTANTIATE_TEST_CASE_P(
-    BLEND, HbdCompBlendTest,
-    ::testing::ValuesIn({make_tuple(aom_highbd_blend_a64_mask_c,
-                                    aom_highbd_blend_a64_mask_sse4_1,
-                                    "aom_highbd_blend_a64_mask_sse4_1")}));
+    BLEND, EbHbdCompBlendTest,
+    ::testing::ValuesIn({make_tuple(eb_aom_highbd_blend_a64_mask_c,
+                                    eb_aom_highbd_blend_a64_mask_sse4_1,
+                                    "eb_aom_highbd_blend_a64_mask_sse4_1")}));
 
-using HbdBlendA64D16MaskFunc = void (*)(uint8_t *, uint32_t,
+using EbHbdBlendA64D16MaskFunc = void (*)(uint8_t *, uint32_t,
                                         const CONV_BUF_TYPE *, uint32_t,
                                         const CONV_BUF_TYPE *, uint32_t,
                                         const uint8_t *, uint32_t, int, int,
                                         int, int, ConvolveParams *, const int);
 
-class HbdCompBlendD16Test
-    : public CompBlendTest<uint16_t, uint16_t, HbdBlendA64D16MaskFunc,
-                           MAKE_PARAM(HbdBlendA64D16MaskFunc)> {
+class EbHbdCompBlendD16Test
+    : public CompBlendTest<uint16_t, uint16_t, EbHbdBlendA64D16MaskFunc,
+                           MAKE_PARAM(EbHbdBlendA64D16MaskFunc)> {
   public:
-    HbdCompBlendD16Test() {
+    EbHbdCompBlendD16Test() {
         bd_ = 10;
         func_ref_ = TEST_GET_PARAM(0);
         func_tst_ = TEST_GET_PARAM(1);
@@ -481,80 +480,21 @@ class HbdCompBlendD16Test
     }
 };
 
-TEST_P(HbdCompBlendD16Test, BlendA64MaskD16) {
+TEST_P(EbHbdCompBlendD16Test, BlendA64MaskD16) {
     run_hbd_test(8);
     run_hbd_test(10);
     run_hbd_test(12);
 }
 
 INSTANTIATE_TEST_CASE_P(
-    BLEND, HbdCompBlendD16Test,
-    ::testing::ValuesIn({make_tuple(aom_highbd_blend_a64_d16_mask_c,
-                                    aom_highbd_blend_a64_d16_mask_avx2,
-                                    "aom_highbd_blend_a64_d16_mask_avx2")}));
+    BLEND, EbHbdCompBlendD16Test,
+    ::testing::ValuesIn({make_tuple(eb_aom_highbd_blend_a64_d16_mask_c,
+                                    eb_aom_highbd_blend_a64_d16_mask_avx2,
+                                    "eb_aom_highbd_blend_a64_d16_mask_avx2")}));
 
-using HbdBlendA64HMaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
+using EbHbdBlendA64HMaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
                                       uint32_t, const uint8_t *, uint32_t,
                                       const uint8_t *, int, int, int);
-
-class HbdCompBlendHMaskTest
-    : public CompBlendTest<uint16_t, uint16_t, HbdBlendA64HMaskFunc,
-                           MAKE_PARAM(HbdBlendA64HMaskFunc)> {
-  public:
-    HbdCompBlendHMaskTest() {
-        bd_ = 8;
-        func_ref_ = TEST_GET_PARAM(0);
-        func_tst_ = TEST_GET_PARAM(1);
-        tst_fn_name = TEST_GET_PARAM(2);
-        no_sub_ = true;
-    }
-
-    void run_hbd_test(uint8_t bd) {
-        bd_ = bd;
-        run_test();
-    }
-
-    void run_blend(int subw, int subh) override {
-        (void)subw;
-        (void)subh;
-        func_ref_((uint8_t *)ref_dst_,
-                  dst_stride_,
-                  (uint8_t *)src0_,
-                  src_stride_,
-                  (uint8_t *)src1_,
-                  src_stride_,
-                  mask_,
-                  w_,
-                  h_,
-                  bd_);
-        func_tst_((uint8_t *)tst_dst_,
-                  dst_stride_,
-                  (uint8_t *)src0_,
-                  src_stride_,
-                  (uint8_t *)src1_,
-                  src_stride_,
-                  mask_,
-                  w_,
-                  h_,
-                  bd_);
-    }
-};
-
-TEST_P(HbdCompBlendHMaskTest, BlendA64Mask) {
-    run_hbd_test(8);
-    run_hbd_test(10);
-    run_hbd_test(12);
-}
-
-INSTANTIATE_TEST_CASE_P(
-    BLEND, HbdCompBlendHMaskTest,
-    ::testing::ValuesIn({make_tuple(aom_highbd_blend_a64_hmask_c,
-                                    aom_highbd_blend_a64_hmask_sse4_1,
-                                    "aom_highbd_blend_a64_hmask_sse4_1")}));
-
-using EbHbdBlendA64HMaskFunc = void (*)(uint16_t *, uint32_t, const uint16_t *,
-                                        uint32_t, const uint16_t *, uint32_t,
-                                        const uint8_t *, int, int, int);
 
 class EbHbdCompBlendHMaskTest
     : public CompBlendTest<uint16_t, uint16_t, EbHbdBlendA64HMaskFunc,
@@ -576,21 +516,21 @@ class EbHbdCompBlendHMaskTest
     void run_blend(int subw, int subh) override {
         (void)subw;
         (void)subh;
-        func_ref_((uint16_t *)ref_dst_,
+        func_ref_((uint8_t *)ref_dst_,
                   dst_stride_,
-                  (uint16_t *)src0_,
+                  (uint8_t *)src0_,
                   src_stride_,
-                  (uint16_t *)src1_,
+                  (uint8_t *)src1_,
                   src_stride_,
                   mask_,
                   w_,
                   h_,
                   bd_);
-        func_tst_((uint16_t *)tst_dst_,
+        func_tst_((uint8_t *)tst_dst_,
                   dst_stride_,
-                  (uint16_t *)src0_,
+                  (uint8_t *)src0_,
                   src_stride_,
-                  (uint16_t *)src1_,
+                  (uint8_t *)src1_,
                   src_stride_,
                   mask_,
                   w_,
@@ -611,15 +551,15 @@ INSTANTIATE_TEST_CASE_P(
                                     eb_aom_highbd_blend_a64_hmask_sse4_1,
                                     "eb_aom_highbd_blend_a64_hmask_sse4_1")}));
 
-using HbdBlendA64VMaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
+using EbHbdBlendA64VMaskFunc = void (*)(uint8_t *, uint32_t, const uint8_t *,
                                       uint32_t, const uint8_t *, uint32_t,
                                       const uint8_t *, int, int, int);
 
-class HbdCompBlendVMaskTest
-    : public CompBlendTest<uint16_t, uint16_t, HbdBlendA64VMaskFunc,
-                           MAKE_PARAM(HbdBlendA64VMaskFunc)> {
+class EbHbdCompBlendVMaskTest
+    : public CompBlendTest<uint16_t, uint16_t, EbHbdBlendA64VMaskFunc,
+                           MAKE_PARAM(EbHbdBlendA64VMaskFunc)> {
   public:
-    HbdCompBlendVMaskTest() {
+    EbHbdCompBlendVMaskTest() {
         bd_ = 8;
         func_ref_ = TEST_GET_PARAM(0);
         func_tst_ = TEST_GET_PARAM(1);
@@ -650,65 +590,6 @@ class HbdCompBlendVMaskTest
                   (uint8_t *)src0_,
                   src_stride_,
                   (uint8_t *)src1_,
-                  src_stride_,
-                  mask_,
-                  w_,
-                  h_,
-                  bd_);
-    }
-};
-
-TEST_P(HbdCompBlendVMaskTest, BlendA64Mask) {
-    run_hbd_test(8);
-    run_hbd_test(10);
-    run_hbd_test(12);
-}
-
-INSTANTIATE_TEST_CASE_P(
-    BLEND, HbdCompBlendVMaskTest,
-    ::testing::ValuesIn({make_tuple(aom_highbd_blend_a64_vmask_c,
-                                    aom_highbd_blend_a64_vmask_sse4_1,
-                                    "aom_highbd_blend_a64_vmask_sse4_1")}));
-
-using EbHbdBlendA64VMaskFunc = void (*)(uint16_t *, uint32_t, const uint16_t *,
-                                        uint32_t, const uint16_t *, uint32_t,
-                                        const uint8_t *, int, int, int);
-
-class EbHbdCompBlendVMaskTest
-    : public CompBlendTest<uint16_t, uint16_t, EbHbdBlendA64VMaskFunc,
-                           MAKE_PARAM(EbHbdBlendA64VMaskFunc)> {
-  public:
-    EbHbdCompBlendVMaskTest() {
-        bd_ = 8;
-        func_ref_ = TEST_GET_PARAM(0);
-        func_tst_ = TEST_GET_PARAM(1);
-        tst_fn_name = TEST_GET_PARAM(2);
-        no_sub_ = true;
-    }
-
-    void run_hbd_test(uint8_t bd) {
-        bd_ = bd;
-        run_test();
-    }
-
-    void run_blend(int subw, int subh) override {
-        (void)subw;
-        (void)subh;
-        func_ref_((uint16_t *)ref_dst_,
-                  dst_stride_,
-                  (uint16_t *)src0_,
-                  src_stride_,
-                  (uint16_t *)src1_,
-                  src_stride_,
-                  mask_,
-                  w_,
-                  h_,
-                  bd_);
-        func_tst_((uint16_t *)tst_dst_,
-                  dst_stride_,
-                  (uint16_t *)src0_,
-                  src_stride_,
-                  (uint16_t *)src1_,
                   src_stride_,
                   mask_,
                   w_,

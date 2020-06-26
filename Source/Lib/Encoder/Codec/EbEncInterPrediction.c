@@ -1945,11 +1945,11 @@ static INLINE void build_obmc_inter_pred_above(uint8_t is16bit, MacroBlockD *xd,
         const uint8_t *const mask       = eb_av1_get_obmc_mask(bh);
 
         if (is16bit)
-            eb_aom_highbd_blend_a64_vmask((uint16_t *)dst,
+            eb_aom_highbd_blend_a64_vmask(dst,
                                           dst_stride,
-                                          (uint16_t *)dst,
+                                          dst,
                                           dst_stride,
-                                          (uint16_t *)tmp,
+                                          tmp,
                                           tmp_stride,
                                           mask,
                                           bw,
@@ -1993,11 +1993,11 @@ static INLINE void build_obmc_inter_pred_above_hbd(uint8_t bit_depth, MacroBlock
         const uint8_t *const tmp = &ctxt->adjacent[plane][plane_col_pos];
         const uint8_t *const mask = eb_av1_get_obmc_mask(bh);
 
-        eb_aom_highbd_blend_a64_vmask((uint16_t *)dst,
+        eb_aom_highbd_blend_a64_vmask(dst,
             dst_stride,
-            (uint16_t *)dst,
+            dst,
             dst_stride,
-            (uint16_t *)tmp,
+            tmp,
             tmp_stride,
             mask,
             bw,
@@ -2040,11 +2040,11 @@ static INLINE void build_obmc_inter_pred_left(uint8_t is16bit, MacroBlockD *xd, 
         const uint8_t *const mask       = eb_av1_get_obmc_mask(bw);
 
         if (is16bit)
-            eb_aom_highbd_blend_a64_hmask((uint16_t *)dst,
+            eb_aom_highbd_blend_a64_hmask(dst,
                                           dst_stride,
-                                          (uint16_t *)dst,
+                                          dst,
                                           dst_stride,
-                                          (uint16_t *)tmp,
+                                          tmp,
                                           tmp_stride,
                                           mask,
                                           bw,
@@ -2088,11 +2088,11 @@ static INLINE void build_obmc_inter_pred_left_hbd(uint8_t bit_depth, MacroBlockD
         const uint8_t *const tmp = &ctxt->adjacent[plane][plane_row_pos * tmp_stride];
         const uint8_t *const mask = eb_av1_get_obmc_mask(bw);
 
-        eb_aom_highbd_blend_a64_hmask((uint16_t *)dst,
+        eb_aom_highbd_blend_a64_hmask(dst,
             dst_stride,
-            (uint16_t *)dst,
+            dst,
             dst_stride,
-            (uint16_t *)tmp,
+            tmp,
             tmp_stride,
             mask,
             bw,

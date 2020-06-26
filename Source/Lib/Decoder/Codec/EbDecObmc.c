@@ -93,7 +93,7 @@ static INLINE void build_obmc_inter_pred_above(
         const uint8_t *const mask = eb_av1_get_obmc_mask(bh);
 
         if (is_hbd)
-            aom_highbd_blend_a64_vmask((tmp_recon_buf),
+            eb_aom_highbd_blend_a64_vmask((tmp_recon_buf),
                                        tmp_recon_stride,
                                        (tmp_recon_buf),
                                        tmp_recon_stride,
@@ -165,7 +165,7 @@ static INLINE void build_obmc_inter_pred_left(
         const uint8_t *const mask = eb_av1_get_obmc_mask(bw);
 
         if (is_hbd)
-            aom_highbd_blend_a64_hmask((uint8_t *)tmp_recon_buf,
+            eb_aom_highbd_blend_a64_hmask((uint8_t *)tmp_recon_buf,
                                        tmp_recon_stride,
                                        (uint8_t *)tmp_recon_buf,
                                        tmp_recon_stride,

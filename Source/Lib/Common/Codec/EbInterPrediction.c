@@ -1898,7 +1898,7 @@ void combine_interintra_highbd(InterIntraMode mode, uint8_t use_wedge_interintra
             const uint8_t *mask = av1_get_contiguous_soft_mask(wedge_index, wedge_sign, bsize);
             const int      subh = 2 * mi_size_high[bsize] == bh;
             const int      subw = 2 * mi_size_wide[bsize] == bw;
-            aom_highbd_blend_a64_mask(comppred8,
+            eb_aom_highbd_blend_a64_mask(comppred8,
                                       compstride,
                                       intrapred8,
                                       intrastride,
@@ -1917,7 +1917,7 @@ void combine_interintra_highbd(InterIntraMode mode, uint8_t use_wedge_interintra
 
     uint8_t mask[MAX_SB_SQUARE];
     build_smooth_interintra_mask(mask, bw, plane_bsize, mode);
-    aom_highbd_blend_a64_mask(comppred8,
+    eb_aom_highbd_blend_a64_mask(comppred8,
                               compstride,
                               intrapred8,
                               intrastride,
@@ -1956,7 +1956,7 @@ void build_masked_compound_no_round(uint8_t *dst, int dst_stride, const CONV_BUF
     const uint8_t *mask = av1_get_compound_type_mask(comp_data, seg_mask, sb_type);
 
     if (is_16bit) {
-        aom_highbd_blend_a64_d16_mask(dst,
+        eb_aom_highbd_blend_a64_d16_mask(dst,
                                       dst_stride,
                                       src0,
                                       src0_stride,
@@ -2203,30 +2203,6 @@ void combine_interintra(InterIntraMode mode, int8_t use_wedge_interintra, int we
                            bh,
                            0,
                            0);
-    }
-}
-
-void eb_aom_highbd_blend_a64_hmask_c(uint16_t *dst, uint32_t dst_stride, const uint16_t *src0,
-                                     uint32_t src0_stride, const uint16_t *src1,
-                                     uint32_t src1_stride, const uint8_t *mask, int w, int h,
-                                     int bd) {
-    (void)bd;
-
-    assert(IMPLIES(src0 == dst, src0_stride == dst_stride));
-    assert(IMPLIES(src1 == dst, src1_stride == dst_stride));
-
-    assert(h >= 1);
-    assert(w >= 1);
-    assert(IS_POWER_OF_TWO(h));
-    assert(IS_POWER_OF_TWO(w));
-
-    assert(bd == 8 || bd == 10 || bd == 12);
-
-    for (int i = 0; i < h; ++i) {
-        for (int j = 0; j < w; ++j) {
-            dst[i * dst_stride + j] =
-                    AOM_BLEND_A64(mask[j], src0[i * src0_stride + j], src1[i * src1_stride + j]);
-        }
     }
 }
 
